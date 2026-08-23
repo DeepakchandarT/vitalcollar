@@ -881,6 +881,21 @@
                     updateDashboard(currentLive, predictionData);
                 });
 
+                // Also fetch initial values once to ensure immediate render of vitals/prediction
+                Promise.all([liveRef.once('value'), predictionRef.once('value')])
+                    .then(([liveSnap, predSnap]) => {
+                        const liveData = (liveSnap && liveSnap.val()) || {};
+                        const predData = (predSnap && predSnap.val()) || {};
+                        window.dashboardLive = liveData;
+                        window.dashboardPrediction = predData;
+                        if (!window.manualDashboardMode) {
+                            updateDashboard(liveData, predData);
+                        }
+                    })
+                    .catch((err) => {
+                        console.warn('Initial Firebase fetch failed, falling back to realtime listeners.', err);
+                    });
+
                 window.dashboardLive = {};
                 window.dashboardPrediction = {};
             } catch (error) {
