@@ -752,12 +752,13 @@
                 ...predictionData
             };
 
-            const heartRate = safeNumber(readValue(live, ['heartRate', 'heart_rate', 'heartrate'], fallbackLive.heartRate), fallbackLive.heartRate);
-            const spO2 = safeNumber(readValue(live, ['spO2', 'spo2', 'oxygenSaturation'], fallbackLive.spO2), fallbackLive.spO2);
-            const temperature = safeNumber(readValue(live, ['temperature', 'temp'], fallbackLive.temperature), fallbackLive.temperature);
-            const ecg = safeNumber(readValue(live, ['ecg', 'electrocardiogram'], fallbackLive.ecg), fallbackLive.ecg);
-            const emg = safeNumber(readValue(live, ['emg', 'electromyogram'], fallbackLive.emg), fallbackLive.emg);
-            const accelerometer = safeNumber(readValue(live, ['accelerometer', 'accel', 'motion'], fallbackLive.accelerometer), fallbackLive.accelerometer);
+            // Accept multiple common key names used by different device payloads and backend writes
+            const heartRate = safeNumber(readValue(live, ['heartRate', 'heart_rate', 'heartrate', 'hr'], fallbackLive.heartRate), fallbackLive.heartRate);
+            const spO2 = safeNumber(readValue(live, ['spO2', 'spo2', 'oxygenSaturation', 'SpO2'], fallbackLive.spO2), fallbackLive.spO2);
+            const temperature = safeNumber(readValue(live, ['temperature', 'temp', 'Temp'], fallbackLive.temperature), fallbackLive.temperature);
+            const ecg = safeNumber(readValue(live, ['ecg', 'ECG', 'electrocardiogram'], fallbackLive.ecg), fallbackLive.ecg);
+            const emg = safeNumber(readValue(live, ['emg', 'electromyogram', 'EMG'], fallbackLive.emg), fallbackLive.emg);
+            const accelerometer = safeNumber(readValue(live, ['accelerometer', 'accel', 'motion', 'adxl', 'adxl_x', 'adxl_y', 'adxl_z'], fallbackLive.accelerometer), fallbackLive.accelerometer);
             const healthScore = safeNumber(readValue(prediction, ['healthScore', 'health_score', 'score'], fallbackPrediction.healthScore), fallbackPrediction.healthScore);
             const risk = String(readValue(prediction, ['risk', 'riskLevel', 'risk_level'], fallbackPrediction.risk));
             const anomaly = String(readValue(prediction, ['anomaly', 'anomalyStatus', 'anomaly_status'], fallbackPrediction.anomaly));
