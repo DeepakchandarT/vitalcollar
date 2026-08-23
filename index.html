@@ -678,8 +678,17 @@
             if (!element) {
                 return;
             }
-            element.textContent = `${value}${unit}`;
-            element.style.color = color;
+            if (value === null || value === undefined || value === '') {
+                element.textContent = '--';
+                element.style.color = '';
+                return;
+            }
+            if (typeof value === 'number') {
+                element.textContent = `${value.toFixed(0)}${unit}`;
+            } else {
+                element.textContent = `${value}${unit}`;
+            }
+            if (color) element.style.color = color;
         }
 
         function renderChart(id, values, color) {
@@ -726,45 +735,51 @@
         }
 
         function updateDashboard(liveData, predictionData) {
-            const live = {
-                ...fallbackLive,
-                ...liveData
-            };
-            const prediction = {
-                ...fallbackPrediction,
-                ...predictionData
-            };
+            const live = liveData || {};
+            const prediction = predictionData || {};
 
-            // Accept multiple common key names used by different device payloads and backend writes
-            const heartRate = safeNumber(readValue(live, ['heartRate', 'heart_rate', 'heartrate', 'hr'], fallbackLive.heartRate), fallbackLive.heartRate);
-            const spO2 = safeNumber(readValue(live, ['spO2', 'spo2', 'oxygenSaturation', 'SpO2'], fallbackLive.spO2), fallbackLive.spO2);
-            const temperature = safeNumber(readValue(live, ['temperature', 'temp', 'Temp'], fallbackLive.temperature), fallbackLive.temperature);
-            const ecg = safeNumber(readValue(live, ['ecg', 'ECG', 'electrocardiogram'], fallbackLive.ecg), fallbackLive.ecg);
-            const emg = safeNumber(readValue(live, ['emg', 'electromyogram', 'EMG'], fallbackLive.emg), fallbackLive.emg);
-            const accelerometer = safeNumber(readValue(live, ['accelerometer', 'accel', 'motion', 'adxl', 'adxl_x', 'adxl_y', 'adxl_z'], fallbackLive.accelerometer), fallbackLive.accelerometer);
-            const healthScore = safeNumber(readValue(prediction, ['healthScore', 'health_score', 'score'], fallbackPrediction.healthScore), fallbackPrediction.healthScore);
-            const risk = String(readValue(prediction, ['risk', 'riskLevel', 'risk_level'], fallbackPrediction.risk));
-            const anomaly = String(readValue(prediction, ['anomaly', 'anomalyStatus', 'anomaly_status'], fallbackPrediction.anomaly));
-            const recommendation = String(readValue(prediction, ['recommendation', 'advice', 'suggestion'], fallbackPrediction.recommendation));
-            const lastUpdated = readValue({ ...live, ...prediction }, ['lastUpdated', 'timestamp', 'updatedAt', 'time'], new Date().toLocaleString());
+            function getNumeric(source, keys) {
+                const v = readValue(source, keys, undefined);
+                if (v === undefined) return null;
+                const n = Number(v);
+                return Number.isFinite(n) ? n : null;
+            }
 
-            appendHistory('heartRate', heartRate);
-            appendHistory('spO2', spO2);
-            appendHistory('temperature', temperature);
-            appendHistory('ecg', ecg);
-            appendHistory('emg', emg);
-            appendHistory('accelerometer', accelerometer);
-            appendHistory('healthScore', healthScore);
+            function getString(source, keys) {
+                const v = readValue(source, keys, undefined);
+                return v === undefined ? null : String(v);
+            }
 
-            setMetric('heart-rate-value', `${heartRate.toFixed(0)} bpm`, '', '#4441cc');
-            setMetric('spO2-value', `${spO2.toFixed(0)}%`, '', '#00802d');
-            setMetric('temperature-value', `${temperature.toFixed(1)}°C`, '', '#885200');
-            setMetric('health-score', `${healthScore.toFixed(0)} / 100`, '', '#4441cc');
-            setText('ecg-value', `${ecg.toFixed(2)} mV`);
-            setText('emg-value', `${emg.toFixed(2)} mV`);
-            setText('accelerometer-value', `${accelerometer.toFixed(2)} g`);
-            setText('recommendation', recommendation);
-            setText('last-updated', formatTimestamp(lastUpdated));
+            // Read only from Firebase-provided objects. If missing, show '--'.
+            const heartRate = getNumeric(live, ['heartRate', 'heart_rate', 'heartrate', 'hr']);
+            const spO2 = getNumeric(live, ['spO2', 'spo2', 'oxygenSaturation', 'SpO2']);
+            const temperature = getNumeric(live, ['temperature', 'temp', 'Temp']);
+            const ecg = getNumeric(live, ['ecg', 'ECG', 'electrocardiogram']);
+            const emg = getNumeric(live, ['emg', 'electromyogram', 'EMG']);
+            const accelerometer = getNumeric(live, ['accelerometer', 'accel', 'motion', 'adxl', 'adxl_x', 'adxl_y', 'adxl_z']);
+            const healthScore = getNumeric(prediction, ['healthScore', 'health_score', 'score']);
+            const risk = getString(prediction, ['risk', 'riskLevel', 'risk_level']);
+            const anomaly = getString(prediction, ['anomaly', 'anomalyStatus', 'anomaly_status']);
+            const recommendation = getString(prediction, ['recommendation', 'advice', 'suggestion']);
+            const lastUpdated = readValue({ ...live, ...prediction }, ['lastUpdated', 'timestamp', 'updatedAt', 'time'], undefined);
+
+            if (heartRate !== null) appendHistory('heartRate', heartRate);
+            if (spO2 !== null) appendHistory('spO2', spO2);
+            if (temperature !== null) appendHistory('temperature', temperature);
+            if (ecg !== null) appendHistory('ecg', ecg);
+            if (emg !== null) appendHistory('emg', emg);
+            if (accelerometer !== null) appendHistory('accelerometer', accelerometer);
+            if (healthScore !== null) appendHistory('healthScore', healthScore);
+
+            setMetric('heart-rate-value', heartRate, ' bpm', '#4441cc');
+            setMetric('spO2-value', spO2, '%', '#00802d');
+            setMetric('temperature-value', temperature, '°C', '#885200');
+            setMetric('health-score', healthScore, ' / 100', '#4441cc');
+            setText('ecg-value', ecg === null ? '--' : `${ecg.toFixed(2)} mV`);
+            setText('emg-value', emg === null ? '--' : `${emg.toFixed(2)} mV`);
+            setText('accelerometer-value', accelerometer === null ? '--' : `${accelerometer.toFixed(2)} g`);
+            setText('recommendation', recommendation || '--');
+            setText('last-updated', lastUpdated ? formatTimestamp(lastUpdated) : '--');
             updateRiskBadge(risk);
             updateAnomalyBadge(anomaly);
 
