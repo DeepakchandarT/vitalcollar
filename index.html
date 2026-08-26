@@ -1,869 +1,159 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MedPredict AI Dashboard</title>
-<!-- Google Fonts: Manrope & Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Config -->
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-error": "#ffffff",
-                        "surface-container-lowest": "#ffffff",
-                        "inverse-surface": "#2e3034",
-                        "surface": "#f9f9fe",
-                        "surface-container-high": "#e8e8ed",
-                        "secondary-container": "#fd9d06",
-                        "secondary-fixed": "#ffddbb",
-                        "error-container": "#ffdad6",
-                        "tertiary-fixed": "#6cff82",
-                        "tertiary": "#006422",
-                        "surface-dim": "#d9dade",
-                        "background": "#f9f9fe",
-                        "on-tertiary": "#ffffff",
-                        "on-primary-fixed-variant": "#332dbc",
-                        "on-primary-fixed": "#0c006b",
-                        "on-error-container": "#93000a",
-                        "on-tertiary-container": "#cdffca",
-                        "primary-container": "#5e5ce6",
-                        "outline-variant": "#c7c4d7",
-                        "inverse-primary": "#c2c1ff",
-                        "surface-variant": "#e2e2e7",
-                        "on-surface": "#1a1c1f",
-                        "surface-container": "#ededf2",
-                        "on-secondary-container": "#653c00",
-                        "secondary-fixed-dim": "#ffb868",
-                        "outline": "#777586",
-                        "inverse-on-surface": "#f0f0f5",
-                        "surface-container-highest": "#e2e2e7",
-                        "on-tertiary-fixed-variant": "#00531a",
-                        "on-primary": "#ffffff",
-                        "surface-bright": "#f9f9fe",
-                        "primary-fixed-dim": "#c2c1ff",
-                        "on-secondary-fixed-variant": "#673d00",
-                        "surface-tint": "#4d4ad5",
-                        "on-tertiary-fixed": "#002106",
-                        "on-background": "#1a1c1f",
-                        "primary": "#4441cc",
-                        "surface-container-low": "#f3f3f8",
-                        "primary-fixed": "#e2dfff",
-                        "secondary": "#885200",
-                        "tertiary-fixed-dim": "#47e266",
-                        "tertiary-container": "#00802d",
-                        "on-primary-container": "#f4f1ff",
-                        "on-secondary": "#ffffff",
-                        "on-surface-variant": "#464554",
-                        "on-secondary-fixed": "#2b1700",
-                        "error": "#ba1a1a"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "card-gap": "20px",
-                        "section-margin": "32px",
-                        "element-margin": "12px",
-                        "base": "8px",
-                        "container-padding": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Manrope"],
-                        "body-sm": ["Manrope"],
-                        "label-caps": ["Inter"],
-                        "display-lg": ["Manrope"],
-                        "data-numeric": ["Inter"],
-                        "headline-sm": ["Manrope"],
-                        "body-md": ["Manrope"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                        "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
-                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "data-numeric": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
-                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
-    </script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>FebFit Wellness — Choose Your Path</title>
 <style>
-        body { font-family: 'Manrope', sans-serif; background-color: #f9f9fe; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid #EDEDF2; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); }
-        .gradient-header { background: linear-gradient(90deg, #4441cc 0%, #5e5ce6 100%); }
-        .data-gradient-1 { background: linear-gradient(180deg, rgba(94, 92, 230, 0.2) 0%, rgba(94, 92, 230, 0) 100%); }
-        .data-gradient-2 { background: linear-gradient(180deg, rgba(253, 157, 6, 0.2) 0%, rgba(253, 157, 6, 0) 100%); }
-        .sidebar-active { background: rgba(94, 92, 230, 0.1); border-radius: 0.75rem; color: #4441cc; font-weight: 700; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #e2e2e7; border-radius: 10px; }
-    </style>
+:root{
+  --purple:#6e4fc9; --purple-deep:#3d2a6d; --purple-bg:#efe9fb;
+  --teal:#0f9c85; --teal-deep:#043d34; --teal-bg:#e6f9f3;
+  --ink:#1b1730; --paper:#fbfaf7;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Georgia,serif;background:var(--ink);color:var(--ink);touch-action:none;user-select:none}
+#stage{position:relative;width:100vw;height:100dvh;overflow:hidden}
+#fork{
+ position:absolute;inset:0;z-index:20;
+ background:linear-gradient(115deg,var(--purple-bg),var(--paper) 50%,var(--teal-bg));
+ display:flex;flex-direction:column;align-items:center;
+ padding-top:9vh;opacity:1;
+}
+.fork-top{text-align:center;padding:0 9vw;z-index:5}
+.eyebrow{font-family:Arial,sans-serif;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:#8b7fa8;margin-bottom:.8em}
+.title{font-size:clamp(1.6rem,6.4vw,2rem);line-height:1.15;font-weight:500}
+.title em{color:var(--purple)}
+.hint{margin-top:1em;font-family:Arial,sans-serif;font-size:.72rem;color:#9a8fb4}
+.interactive{
+ position:relative;z-index:5;width:100%;flex:1;display:flex;align-items:center;
+ justify-content:space-between;gap:2vw;padding:0 7vw;cursor:grab;
+}
+.interactive.grabbing{cursor:grabbing}
+.side{width:32%;transition:transform .55s ease,opacity .4s ease}
+.left{text-align:left}.right{text-align:right}
+.arrow{font-family:Arial,sans-serif;font-weight:700;letter-spacing:.1em;font-size:clamp(.72rem,2.6vw,.92rem)}
+.left .arrow{color:var(--purple)}.right .arrow{color:var(--teal)}
+.brand{margin-top:.5em;font-size:clamp(1.1rem,6vw,2.35rem);font-weight:600;line-height:1.02;overflow-wrap:anywhere}
+.left .brand{color:var(--purple-deep)}.right .brand{color:var(--teal-deep)}
+.tags{margin-top:.55em;font-family:Arial,sans-serif;font-size:clamp(.6rem,2vw,.68rem);color:#7a7190}
+.gesture{position:relative;width:34vw;max-width:250px;min-width:150px;height:78px;flex:none}
+.gesture svg{width:100%;height:100%}
+.garrow{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gl{stroke:#cbb9f4}.gr{stroke:#b7ece1}
+.hand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:30px}
+.ripple{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px;border-radius:50%;border:1px solid #cbb9f4;animation:ripple 2.8s infinite}
+.r2{border-color:#b7ece1;animation-delay:.9s}.r3{animation-delay:1.8s}
+@keyframes ripple{0%{transform:scale(.3);opacity:.6}70%{opacity:.12}100%{transform:scale(3.6);opacity:0}}
+.bottom{font-family:Arial,sans-serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:#9a8fb4;margin-bottom:4vh}
+.progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:#0000000d}
+.fill{height:100%;width:0;transition:width .1s}
+.fill.leftfill{background:var(--purple)}.fill.rightfill{background:var(--teal)}
+@media(max-width:430px){.gesture{width:30vw;min-width:118px;height:64px}.side{width:36%}}
+</style>
 </head>
-<body class="bg-surface text-on-surface overflow-x-hidden">
-<!-- Side Navigation -->
-<aside class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface hidden md:flex flex-col p-card-gap gap-base z-40">
-<div class="px-2 py-4">
-<h1 class="text-headline-sm font-headline-sm text-primary">Health Analytics</h1>
-<p class="text-body-sm font-body-sm text-on-surface-variant">Predictive Unit v2.4</p>
-</div>
-<button class="w-full py-3 px-4 mb-4 bg-primary text-on-primary rounded-xl font-headline-sm shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">add</span>
-            New Analysis
-        </button>
-<nav class="flex-1 flex flex-col gap-1">
-<a class="sidebar-active flex items-center gap-3 px-4 py-3 transition-colors" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="text-label-caps font-label-caps">Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined">biotech</span>
-<span class="text-label-caps font-label-caps">Patient Models</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined">analytics</span>
-<span class="text-label-caps font-label-caps">Health Reports</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
-<span class="material-symbols-outlined">database</span>
-<span class="text-label-caps font-label-caps">Resource Analysis</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors rounded-lg mt-auto" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="text-label-caps font-label-caps">System Settings</span>
-</a>
-</nav>
-</aside>
-<!-- Main Wrapper -->
-<div class="md:ml-64 flex-1 flex flex-col min-h-screen">
-<!-- Top Bar -->
-<header class="gradient-header text-on-primary shadow-lg shadow-primary/20 flex justify-between items-center w-full px-6 py-4 z-50 rounded-b-xl sticky top-0">
-<div class="flex items-center gap-6 w-1/2">
-<div class="text-headline-md font-headline-md font-bold">MedPredict AI</div>
-<div class="relative w-full max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-primary/70">search</span>
-<input class="w-full bg-white/10 backdrop-blur-md border-none rounded-lg py-2 pl-10 pr-4 text-body-md text-on-primary placeholder-on-primary/70 focus:ring-2 focus:ring-white/20" placeholder="Type in to search..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 hover:bg-white/10 rounded-full transition-all relative">
-<span class="material-symbols-outlined">folder</span>
-</button>
-<button class="p-2 hover:bg-white/10 rounded-full transition-all relative">
-<span class="material-symbols-outlined">mail</span>
-</button>
-<button class="p-2 hover:bg-white/10 rounded-full transition-all relative">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-1 right-1 bg-secondary-container text-on-secondary-container text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">7</span>
-</button>
-<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-white/20">
-<img class="w-full h-full object-cover" data-alt="Professional portrait of a Chief Medical Officer in clinical setting with soft natural lighting, modern corporate medical aesthetic with clean lines and soft purple and blue color palette to match the UI. The composition is a close-up headshot with a blurred high-tech medical laboratory in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCupR1794tt2cNXJTKaxg1kK0BwMBa3uBhZqR00O20iTDMe_K4NyRfi9kk0morua-LxUalQMY2bvencx_RWDXEaDAjYDPLL_uYslAttl4O213dHNJtzcOqWxuA4MYOxB9O35YuayD1tmXzBzsebtu4it7DTq_vRr8BoKKqXM5PmuoC0UPajfxlkDQmBtKmEQ7Ilvu5DsZnw0kmfIOGilrBHqcPPG9hLpBxcAinIIggBrnIrb7vhJdnwLXba7RPgm8q2U1NK1QuZOyr3"/>
-</div>
-</div>
-</header>
-<!-- Content Canvas -->
-<main class="p-container-padding grid grid-cols-12 gap-card-gap">
-<!-- Main Medical Predictions Chart -->
-<section class="col-span-12 lg:col-span-8 glass-card p-6 rounded-xl">
-<div class="flex justify-between items-center mb-6">
-<div>
-<h2 class="text-headline-md font-headline-md">Medical Predictions</h2>
-<p class="text-body-sm text-on-surface-variant">Model prediction accuracy trends</p>
-</div>
-<div class="flex items-center gap-2">
-<select class="bg-surface-container border-none text-body-sm rounded-lg py-1 px-3 focus:ring-primary">
-<option>12 months</option>
-<option>30 days</option>
-</select>
-<div class="flex bg-surface-container rounded-lg p-1">
-<button class="p-1 hover:bg-white rounded transition-all"><span class="material-symbols-outlined text-[20px]">view_list</span></button>
-<button class="p-1 bg-white shadow-sm rounded transition-all"><span class="material-symbols-outlined text-[20px]">grid_view</span></button>
-</div>
-</div>
-</div>
-<div class="relative h-64 w-full">
-<!-- Faux Line Chart Visualization using SVG for precision -->
-<svg class="w-full h-full" viewbox="0 0 800 200">
-<defs>
-<lineargradient id="chartGradient1" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#4441cc" stop-opacity="0.2"></stop>
-<stop offset="100%" stop-color="#4441cc" stop-opacity="0"></stop>
-</lineargradient>
-<lineargradient id="chartGradient2" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#ffb868" stop-opacity="0.2"></stop>
-<stop offset="100%" stop-color="#ffb868" stop-opacity="0"></stop>
-</lineargradient>
-</defs>
-<!-- Grid lines -->
-<line stroke="#EDEDF2" stroke-dasharray="4" stroke-width="1" x1="0" x2="800" y1="50" y2="50"></line>
-<line stroke="#EDEDF2" stroke-dasharray="4" stroke-width="1" x1="0" x2="800" y1="100" y2="100"></line>
-<line stroke="#EDEDF2" stroke-dasharray="4" stroke-width="1" x1="0" x2="800" y1="150" y2="150"></line>
-<!-- Area 1 -->
-<path d="M0 150 L100 130 L200 160 L300 120 L400 110 L500 140 L600 100 L700 115 L800 125 L800 200 L0 200 Z" fill="url(#chartGradient1)"></path>
-<!-- Line 1 -->
-<path d="M0 150 L100 130 L200 160 L300 120 L400 110 L500 140 L600 100 L700 115 L800 125" fill="none" stroke="#4441cc" stroke-width="2"></path>
-<!-- Area 2 -->
-<path d="M0 140 L100 155 L200 145 L300 150 L400 130 L500 120 L600 110 L700 80 L800 60 L800 200 L0 200 Z" fill="url(#chartGradient2)"></path>
-<!-- Line 2 -->
-<path d="M0 140 L100 155 L200 145 L300 150 L400 130 L500 120 L600 110 L700 80 L800 60" fill="none" stroke="#ffb868" stroke-width="2"></path>
-<!-- Dots -->
-<circle cx="200" cy="160" fill="white" r="4" stroke="#4441cc" stroke-width="2"></circle>
-<circle cx="600" cy="110" fill="white" r="4" stroke="#ffb868" stroke-width="2"></circle>
-</svg>
-<!-- Floating Data Tooltip -->
-<div class="absolute top-[120px] left-[180px] bg-primary text-on-primary text-[10px] px-2 py-1 rounded shadow-lg flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">biotech</span>
-                        Data View: 1,234
-                    </div>
-</div>
-<div class="flex justify-between mt-4 px-2">
-<span class="text-label-caps text-on-surface-variant">Mon</span>
-<span class="text-label-caps text-on-surface-variant">Tue</span>
-<span class="text-label-caps text-on-surface-variant">Wed</span>
-<span class="text-label-caps text-on-surface-variant">Thu</span>
-<span class="text-label-caps text-on-surface-variant">Fri</span>
-<span class="text-label-caps text-on-surface-variant">Sat</span>
-<span class="text-label-caps text-on-surface-variant">Sun</span>
-<span class="text-label-caps text-on-surface-variant">Mon</span>
-</div>
-</section>
-<!-- Patient Health Trends Bar Chart -->
-<section class="col-span-12 lg:col-span-4 glass-card p-6 rounded-xl">
-<div class="flex justify-between items-center mb-6">
-<h2 class="text-headline-sm font-headline-sm">Patient Health Trends</h2>
-<span class="material-symbols-outlined text-outline">more_vert</span>
-</div>
-<div class="grid grid-cols-3 gap-2 mb-8">
-<div class="text-center">
-<div class="text-headline-sm font-bold">1,560</div>
-<div class="text-[10px] uppercase font-bold text-on-surface-variant">Profile Views</div>
-</div>
-<div class="text-center border-x border-outline-variant">
-<div class="text-headline-sm font-bold">780</div>
-<div class="text-[10px] uppercase font-bold text-on-surface-variant">Unique Patients</div>
-</div>
-<div class="text-center">
-<div class="text-headline-sm font-bold">1,560</div>
-<div class="text-[10px] uppercase font-bold text-on-surface-variant">Report Views</div>
-</div>
-</div>
-<div class="h-40 flex items-end justify-between gap-1 px-4">
-<!-- Dynamic Bars -->
-<div class="w-2 bg-primary rounded-t-full h-[30%] opacity-20"></div>
-<div class="w-2 bg-primary rounded-t-full h-[60%] opacity-40"></div>
-<div class="w-2 bg-primary rounded-t-full h-[80%] opacity-60"></div>
-<div class="w-2 bg-primary rounded-t-full h-[100%]"></div>
-<div class="w-2 bg-secondary rounded-t-full h-[40%] opacity-40"></div>
-<div class="w-2 bg-secondary rounded-t-full h-[70%] opacity-60"></div>
-<div class="w-2 bg-primary rounded-t-full h-[50%]"></div>
-<div class="w-2 bg-primary rounded-t-full h-[90%] opacity-80"></div>
-<div class="w-2 bg-primary rounded-t-full h-[40%] opacity-20"></div>
-<div class="w-2 bg-primary rounded-t-full h-[65%] opacity-50"></div>
-<div class="w-2 bg-secondary rounded-t-full h-[85%]"></div>
-<div class="w-2 bg-primary rounded-t-full h-[100%] opacity-90"></div>
-</div>
-<div class="flex justify-between mt-4 text-[10px] text-on-surface-variant font-bold uppercase">
-<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
-</div>
-</section>
-<!-- Bottom Left Cards Container -->
-<div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-card-gap">
-<!-- Patient Statistics Ring -->
-<div class="glass-card p-6 rounded-xl flex items-center justify-between">
-<div class="relative w-32 h-32 flex items-center justify-center">
-<svg class="w-full h-full transform -rotate-90">
-<circle cx="64" cy="64" fill="transparent" r="56" stroke="#f3f3f8" stroke-width="12"></circle>
-<circle cx="64" cy="64" fill="transparent" r="56" stroke="#4441cc" stroke-dasharray="351" stroke-dashoffset="100" stroke-linecap="round" stroke-width="12"></circle>
-</svg>
-<div class="absolute inset-0 flex flex-col items-center justify-center">
-<span class="text-data-numeric">75%</span>
-<span class="text-[10px] text-on-surface-variant">Capacity</span>
-</div>
-</div>
-<div class="flex-1 ml-6 space-y-4">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-primary"></span>
-<span class="text-body-sm">Urgent Care</span>
-</div>
-<span class="text-body-sm font-bold text-secondary">50%</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
-<span class="text-body-sm">Routine Checkup</span>
-</div>
-<span class="text-body-sm font-bold text-primary">30%</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-surface-container-high"></span>
-<span class="text-body-sm">Tele-Health</span>
-</div>
-<span class="text-body-sm font-bold text-on-surface-variant">20%</span>
-</div>
-</div>
-</div>
-<!-- Analysis Success Indicator -->
-<div class="glass-card p-6 rounded-xl text-center">
-<h3 class="text-headline-sm mb-4">Analysis Completion</h3>
-<div class="relative w-32 h-32 mx-auto">
-<svg class="w-full h-full">
-<circle cx="64" cy="64" fill="transparent" r="56" stroke="#f3f3f8" stroke-dasharray="10 4" stroke-width="4"></circle>
-<circle cx="64" cy="64" fill="transparent" r="56" stroke="#4441cc" stroke-dasharray="260 100" stroke-linecap="round" stroke-width="8"></circle>
-</svg>
-<div class="absolute inset-0 flex flex-col items-center justify-center">
-<span class="text-display-lg">5</span>
-<span class="text-label-caps text-on-surface-variant">Days Left</span>
-</div>
-</div>
-</div>
-<!-- Model Accuracy Indicator (formerly SEO) -->
-<div class="glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-2">
-<h3 class="text-headline-sm self-start">Model Accuracy</h3>
-<div class="relative w-48 h-24 overflow-hidden">
-<svg class="w-full h-full" viewbox="0 0 100 50">
-<path d="M10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#f3f3f8" stroke-width="10"></path>
-<path d="M10 50 A 40 40 0 0 1 82 42" fill="none" stroke="#fd9d06" stroke-linecap="round" stroke-width="10"></path>
-</svg>
-<div class="absolute bottom-0 inset-x-0 text-center">
-<span class="text-data-numeric">90%</span>
-</div>
-</div>
-</div>
-<!-- Progress Table Summary -->
-<div class="glass-card p-6 rounded-xl">
-<h3 class="text-headline-sm mb-4">Patient Demographics</h3>
-<div class="space-y-4">
-<div>
-<div class="flex justify-between mb-1">
-<span class="text-body-sm font-bold">Group A: Cardiac</span>
-<span class="text-body-sm">37% Targeted</span>
-</div>
-<div class="w-full bg-surface-container rounded-full h-1.5">
-<div class="bg-primary h-1.5 rounded-full" style="width: 37%"></div>
-</div>
-</div>
-<div>
-<div class="flex justify-between mb-1">
-<span class="text-body-sm font-bold">Group B: Pediatric</span>
-<span class="text-body-sm">25% Targeted</span>
-</div>
-<div class="w-full bg-surface-container rounded-full h-1.5">
-<div class="bg-secondary-container h-1.5 rounded-full" style="width: 25%"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Resource Allocation Table (Right Column) -->
-<section class="col-span-12 lg:col-span-4 glass-card p-6 rounded-xl flex flex-col">
-<div class="flex justify-between items-center mb-6">
-<h2 class="text-headline-sm font-headline-sm">Resource Allocation</h2>
-<div class="text-[10px] text-on-surface-variant font-bold flex gap-2">
-<span>7 Days</span>
-<span class="text-primary underline">1 Month</span>
-<span>3 Months</span>
-</div>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-separate border-spacing-y-4">
-<thead class="text-label-caps text-on-surface-variant uppercase">
-<tr>
-<th class="pb-2">Physician</th>
-<th class="pb-2">Load</th>
-<th class="pb-2">Trend</th>
-</tr>
-</thead>
-<tbody class="text-body-sm">
-<tr class="group hover:bg-surface-container-low transition-colors">
-<td class="py-2 flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600">
-<span class="material-symbols-outlined text-[18px]">person</span>
-</div>
-<div>
-<div class="font-bold">Dr. Agung Doe</div>
-<div class="text-[10px] text-on-surface-variant">Cardiology</div>
-</div>
-</td>
-<td class="font-bold">$ 1,234,566</td>
-<td>
-<svg height="20" width="60">
-<path d="M0 15 L10 12 L20 18 L30 10 L40 12 L50 5 L60 8" fill="none" stroke="#ba1a1a" stroke-width="1.5"></path>
-</svg>
-</td>
-</tr>
-<tr class="group hover:bg-surface-container-low transition-colors">
-<td class="py-2 flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
-<span class="material-symbols-outlined text-[18px]">person</span>
-</div>
-<div>
-<div class="font-bold">Dr. Surya Doe</div>
-<div class="text-[10px] text-on-surface-variant">Neurology</div>
-</div>
-</td>
-<td class="font-bold">$ 1,234,566</td>
-<td>
-<svg height="20" width="60">
-<path d="M0 5 L10 12 L20 8 L30 15 L40 5 L50 12 L60 5" fill="none" stroke="#00802d" stroke-width="1.5"></path>
-</svg>
-</td>
-</tr>
-<tr class="group hover:bg-surface-container-low transition-colors">
-<td class="py-2 flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
-<span class="material-symbols-outlined text-[18px]">person</span>
-</div>
-<div>
-<div class="font-bold">Dr. Lasmana Doe</div>
-<div class="text-[10px] text-on-surface-variant">General Medicine</div>
-</div>
-</td>
-<td class="font-bold">$ 1,234,566</td>
-<td>
-<svg height="20" width="60">
-<path d="M0 15 L10 10 L20 12 L30 5 L40 8 L50 5 L60 2" fill="none" stroke="#00802d" stroke-width="1.5"></path>
-</svg>
-</td>
-</tr>
-<tr class="group hover:bg-surface-container-low transition-colors">
-<td class="py-2 flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-pink-100 flex items-center justify-center text-pink-600">
-<span class="material-symbols-outlined text-[18px]">person</span>
-</div>
-<div>
-<div class="font-bold">Dr. Firiyatul Doe</div>
-<div class="text-[10px] text-on-surface-variant">Orthopedics</div>
-</div>
-</td>
-<td class="font-bold">$ 1,234,566</td>
-<td>
-<svg height="20" width="60">
-<path d="M0 18 L10 15 L20 12 L30 15 L40 10 L50 12 L60 8" fill="none" stroke="#ba1a1a" stroke-width="1.5"></path>
-</svg>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination footer for table -->
-<div class="mt-auto pt-6 flex justify-between items-center text-on-surface-variant">
-<button class="flex items-center gap-1 hover:text-primary"><span class="material-symbols-outlined text-[16px]">chevron_left</span> Previous</button>
-<div class="flex gap-4">
-<span class="text-primary font-bold">1</span>
-<span class="hover:text-primary cursor-pointer">2</span>
-<span class="hover:text-primary cursor-pointer">3</span>
-</div>
-<button class="flex items-center gap-1 hover:text-primary">Next <span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
-</div>
-</section>
-<!-- Live Patient Monitoring -->
-<section class="col-span-12 glass-card p-6 rounded-xl">
-<div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-6">
-<div>
-<h2 class="text-headline-md font-headline-md">Live Patient Monitoring</h2>
-<p class="text-body-sm text-on-surface-variant">Connected to Firebase Realtime Database • <span id="connection-state" class="font-semibold text-primary">Connecting…</span></p>
-</div>
-<div class="rounded-full border border-outline-variant bg-surface-container-low px-3 py-1 text-body-sm text-on-surface-variant">
-<span class="font-semibold text-primary">Last updated:</span>
-<span id="last-updated" class="ml-1">--</span>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-<div class="rounded-xl border border-outline-variant bg-surface-container-low p-4">
-<div class="text-label-caps text-on-surface-variant">Heart Rate</div>
-<div id="heart-rate-value" class="mt-2 text-data-numeric text-primary">--</div>
-<div class="mt-2 h-16"><svg id="heart-rate-chart" class="w-full h-full" viewbox="0 0 100 40"></svg></div>
-</div>
-<div class="rounded-xl border border-outline-variant bg-surface-container-low p-4">
-<div class="text-label-caps text-on-surface-variant">SpO2</div>
-<div id="spO2-value" class="mt-2 text-data-numeric text-tertiary">--</div>
-<div class="mt-2 h-16"><svg id="spo2-chart" class="w-full h-full" viewbox="0 0 100 40"></svg></div>
-</div>
-<div class="rounded-xl border border-outline-variant bg-surface-container-low p-4">
-<div class="text-label-caps text-on-surface-variant">Temperature</div>
-<div id="temperature-value" class="mt-2 text-data-numeric text-secondary">--</div>
-<div class="mt-2 h-16"><svg id="temperature-chart" class="w-full h-full" viewbox="0 0 100 40"></svg></div>
-</div>
-<div class="rounded-xl border border-outline-variant bg-surface-container-low p-4">
-<div class="text-label-caps text-on-surface-variant">Health Score</div>
-<div id="health-score" class="mt-2 text-data-numeric text-primary">--</div>
-<div class="mt-2 h-16"><svg id="health-score-chart" class="w-full h-full" viewbox="0 0 100 40"></svg></div>
-</div>
-</div>
-<div class="mt-6 grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-card-gap">
-<div class="rounded-xl border border-outline-variant bg-surface-container-low p-5">
-<div class="flex items-center justify-between">
-<h3 class="text-headline-sm">Signal Trends</h3>
-<div class="text-body-sm text-on-surface-variant">ECG • EMG • Accelerometer</div>
-</div>
-<div class="mt-4 space-y-4">
-<div>
-<div class="flex justify-between text-body-sm mb-1"><span class="font-semibold">ECG</span><span id="ecg-value">--</span></div>
-<svg id="ecg-chart" class="w-full h-14" viewbox="0 0 100 40"></svg>
-</div>
-<div>
-<div class="flex justify-between text-body-sm mb-1"><span class="font-semibold">EMG</span><span id="emg-value">--</span></div>
-<svg id="emg-chart" class="w-full h-14" viewbox="0 0 100 40"></svg>
-</div>
-<div>
-<div class="flex justify-between text-body-sm mb-1"><span class="font-semibold">Accelerometer</span><span id="accelerometer-value">--</span></div>
-<svg id="accelerometer-chart" class="w-full h-14" viewbox="0 0 100 40"></svg>
-</div>
-</div>
-</div>
-<div class="rounded-xl border border-outline-variant bg-surface-container-low p-5">
-<h3 class="text-headline-sm">Clinical Summary</h3>
-<div class="mt-4 space-y-3">
-<div class="flex justify-between items-center rounded-lg bg-surface-container p-3">
-<span class="text-body-sm">Risk</span>
-<span id="risk-pill" class="inline-flex rounded-full bg-tertiary-fixed px-3 py-1 text-body-sm font-semibold text-on-tertiary-fixed">--</span>
-</div>
-<div class="flex justify-between items-center rounded-lg bg-surface-container p-3">
-<span class="text-body-sm">Anomaly</span>
-<span id="anomaly-pill" class="inline-flex rounded-full bg-surface-container-high px-3 py-1 text-body-sm font-semibold text-on-surface-variant">--</span>
-</div>
-<div class="rounded-lg bg-surface-container p-3">
-<div class="text-label-caps text-on-surface-variant">Recommendation</div>
-<div id="recommendation" class="mt-1 text-body-md font-semibold text-on-surface">--</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Local variables removed to ensure Firebase values are always used -->
-</section>
-<!-- Bottom Row: Product Growth -->
-<section class="col-span-12 glass-card p-6 rounded-xl flex items-center justify-between">
-<div class="flex items-center gap-8">
-<div>
-<h3 class="text-headline-sm">Algorithm Growth</h3>
-<p class="text-body-sm text-on-surface-variant">Active Model Impressions</p>
-</div>
-<div class="flex flex-col">
-<span class="text-display-lg leading-none">1.234</span>
-<span class="text-tertiary font-bold text-body-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">arrow_upward</span> 26.84%
-                        </span>
-</div>
-</div>
-<div class="flex-1 max-w-md h-24 ml-auto">
-<svg class="w-full h-full" viewbox="0 0 400 100">
-<path d="M0 80 Q 50 70, 100 85 T 200 60 T 300 75 T 400 40" fill="none" stroke="#4441cc" stroke-linecap="round" stroke-width="3"></path>
-<path d="M0 80 Q 50 70, 100 85 T 200 60 T 300 75 T 400 40 L 400 100 L 0 100 Z" fill="url(#chartGradient1)"></path>
-</svg>
-</div>
-<div class="flex gap-4 ml-8">
-<span class="text-label-caps text-primary border-b-2 border-primary">6M</span>
-<span class="text-label-caps text-on-surface-variant">1Y</span>
-<span class="text-label-caps text-on-surface-variant">5Y</span>
-<span class="text-label-caps text-on-surface-variant">ALL</span>
-</div>
-</section>
-</main>
-</div>
-<!-- Micro-interaction Scripts -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<body>
+<div id="stage">
+  <div id="fork">
+    <div class="fork-top">
+      <div class="eyebrow">choose your path</div>
+      <div class="title">Strength <em>or</em> stillness?</div>
+      <div class="hint">drag left to move, right to pause</div>
+    </div>
+
+    <div class="interactive" id="interactive">
+      <div class="side left" id="left">
+        <div class="arrow">← MOVE</div>
+        <div class="brand">FEBFIT</div>
+        <div class="tags">Strength · Mobility · Energy</div>
+      </div>
+
+      <div class="gesture" aria-hidden="true">
+        <svg viewBox="0 0 220 90" preserveAspectRatio="none">
+          <line class="garrow gl" x1="94" y1="45" x2="24" y2="45"/>
+          <polyline class="garrow gl" points="36,33 24,45 36,57"/>
+          <line class="garrow gr" x1="126" y1="45" x2="196" y2="45"/>
+          <polyline class="garrow gr" points="184,33 196,45 184,57"/>
+        </svg>
+        <div class="ripple"></div><div class="ripple r2"></div><div class="ripple r3"></div>
+        <div class="hand">☝</div>
+      </div>
+
+      <div class="side right" id="right">
+        <div class="arrow">PAUSE →</div>
+        <div class="brand">FEBMINDFULNESS</div>
+        <div class="tags">Breath · Stillness · Balance</div>
+      </div>
+    </div>
+
+    <div class="bottom">Swipe to explore</div>
+    <div class="progress"><div class="fill" id="fill"></div></div>
+  </div>
+</div>
+
 <script>
-        const historyStore = {
-            heartRate: [],
-            spO2: [],
-            temperature: [],
-            ecg: [],
-            emg: [],
-            accelerometer: [],
-            healthScore: []
-        };
+(function(){
+  const zone=document.getElementById('interactive');
+  const left=document.getElementById('left');
+  const right=document.getElementById('right');
+  const fill=document.getElementById('fill');
+  let dragging=false,startX=0,dx=0,pointerId=null;
+  const threshold=.27;
 
-        const fallbackLive = {
-            heartRate: 78,
-            spO2: 98,
-            temperature: 36.8,
-            ecg: 1.2,
-            emg: 0.34,
-            accelerometer: 0.18
-        };
+  function visual(x){
+    const p=Math.min(Math.abs(x)/(innerWidth*.4),1);
+    const t=Math.min(Math.abs(x)/(innerWidth*threshold),1);
+    zone.style.transform=`translate3d(${x*.14}px,0,0)`;
+    if(x<0){
+      left.style.transform=`translate3d(${x*.1}px,0,0) scale(${1+p*.06})`;
+      right.style.transform=`translate3d(${p*14}px,${p*10}px,0) scale(${1-p*.22})`;
+      right.style.opacity=1-p*.7; left.style.opacity=1;
+      fill.className='fill leftfill'; fill.style.width=(t*100)+'%';
+    }else if(x>0){
+      right.style.transform=`translate3d(${x*.1}px,0,0) scale(${1+p*.06})`;
+      left.style.transform=`translate3d(${-p*14}px,${p*10}px,0) scale(${1-p*.22})`;
+      left.style.opacity=1-p*.7; right.style.opacity=1;
+      fill.className='fill rightfill'; fill.style.width=(t*100)+'%';
+    }
+  }
 
-        const fallbackPrediction = {
-            healthScore: 86,
-            risk: 'Low',
-            anomaly: 'No anomaly',
-            recommendation: 'Continue monitoring and review the trend in 24 hours.'
-        };
+  function reset(){
+    zone.style.transform='';left.style.transform='';right.style.transform='';
+    left.style.opacity='';right.style.opacity='';fill.style.width='0';
+  }
 
-        function safeNumber(value, fallback) {
-            const parsed = Number(value);
-            return Number.isFinite(parsed) ? parsed : fallback;
-        }
+  function complete(dir){
+    zone.style.transition='transform .45s ease';
+    zone.style.transform=`translate3d(${dir*innerWidth*.65}px,0,0)`;
+    fill.style.width='100%';
+    setTimeout(()=>{
+      // REAL PAGE NAVIGATION: these are separate HTML pages on the same Vercel site.
+      window.location.href = dir<0 ? 'febfit.html' : 'febmindfulness.html';
+    },430);
+  }
 
-        function readValue(source, keys, fallback) {
-            for (const key of keys) {
-                if (source && Object.prototype.hasOwnProperty.call(source, key) && source[key] !== null && source[key] !== '') {
-                    return source[key];
-                }
-            }
-            return fallback;
-        }
-
-        function formatTimestamp(value) {
-            if (!value) return 'Just now';
-            if (typeof value === 'number') {
-                return new Date(value).toLocaleString();
-            }
-            if (typeof value === 'string' && /^\d+$/.test(value)) {
-                return new Date(Number(value)).toLocaleString();
-            }
-            if (value instanceof Date) {
-                return value.toLocaleString();
-            }
-            return String(value);
-        }
-
-        function appendHistory(key, value) {
-            const list = historyStore[key];
-            list.push(value);
-            if (list.length > 12) {
-                list.shift();
-            }
-        }
-
-        function buildSparkline(values, color) {
-            if (!values.length) {
-                return '';
-            }
-
-            const width = 100;
-            const height = 40;
-            const padding = 4;
-            const min = Math.min(...values) * 0.95;
-            const max = Math.max(...values) * 1.05;
-            const range = max - min || 1;
-            const points = values.map((value, index) => {
-                const x = padding + (index / Math.max(values.length - 1, 1)) * (width - padding * 2);
-                const y = height - padding - ((value - min) / range) * (height - padding * 2);
-                return `${x.toFixed(1)},${y.toFixed(1)}`;
-            });
-
-            return `
-                <svg class="w-full h-full" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 4 36 L 96 36" stroke="#EDEDF2" stroke-width="1" stroke-dasharray="2,2"></path>
-                    <polyline fill="none" stroke="${color}" stroke-width="2.4" points="${points.join(' ')}"></polyline>
-                </svg>`;
-        }
-
-        function setText(id, value) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.textContent = value;
-            }
-        }
-
-        function setMetric(id, value, unit, color) {
-            const element = document.getElementById(id);
-            if (!element) {
-                return;
-            }
-            if (value === null || value === undefined || value === '') {
-                element.textContent = '--';
-                element.style.color = '';
-                return;
-            }
-            if (typeof value === 'number') {
-                element.textContent = `${value.toFixed(0)}${unit}`;
-            } else {
-                element.textContent = `${value}${unit}`;
-            }
-            if (color) element.style.color = color;
-        }
-
-        function renderChart(id, values, color) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.innerHTML = buildSparkline(values, color);
-            }
-        }
-
-        function updateRiskBadge(value) {
-            const element = document.getElementById('risk-pill');
-            if (!element) {
-                return;
-            }
-            const riskText = String(value || 'Low');
-            const safeRisk = riskText.toLowerCase();
-            let classes = 'inline-flex rounded-full px-3 py-1 text-body-sm font-semibold ';
-            if (safeRisk.includes('high')) {
-                classes += 'bg-error-container text-on-error-container';
-            } else if (safeRisk.includes('medium')) {
-                classes += 'bg-secondary-container text-on-secondary-container';
-            } else {
-                classes += 'bg-tertiary-fixed text-on-tertiary-fixed';
-            }
-            element.className = classes;
-            element.textContent = riskText;
-        }
-
-        function updateAnomalyBadge(value) {
-            const element = document.getElementById('anomaly-pill');
-            if (!element) {
-                return;
-            }
-            const anomalyText = String(value || 'No anomaly');
-            const safeAnomaly = anomalyText.toLowerCase();
-            let classes = 'inline-flex rounded-full px-3 py-1 text-body-sm font-semibold ';
-            if (safeAnomaly.includes('anomaly') || safeAnomaly.includes('alert')) {
-                classes += 'bg-error-container text-on-error-container';
-            } else {
-                classes += 'bg-surface-container-high text-on-surface-variant';
-            }
-            element.className = classes;
-            element.textContent = anomalyText;
-        }
-
-        function updateDashboard(liveData, predictionData) {
-            const live = liveData || {};
-            const prediction = predictionData || {};
-
-            function getNumeric(source, keys) {
-                const v = readValue(source, keys, undefined);
-                if (v === undefined) return null;
-                const n = Number(v);
-                return Number.isFinite(n) ? n : null;
-            }
-
-            function getString(source, keys) {
-                const v = readValue(source, keys, undefined);
-                return v === undefined ? null : String(v);
-            }
-
-            // Read only from Firebase-provided objects. If missing, show '--'.
-            const heartRate = getNumeric(live, ['heartRate', 'heart_rate', 'heartrate', 'hr']);
-            const spO2 = getNumeric(live, ['spO2', 'spo2', 'oxygenSaturation', 'SpO2']);
-            const temperature = getNumeric(live, ['temperature', 'temp', 'Temp']);
-            const ecg = getNumeric(live, ['ecg', 'ECG', 'electrocardiogram']);
-            const emg = getNumeric(live, ['emg', 'electromyogram', 'EMG']);
-            const accelerometer = getNumeric(live, ['accelerometer', 'accel', 'motion', 'adxl', 'adxl_x', 'adxl_y', 'adxl_z']);
-            const healthScore = getNumeric(prediction, ['healthScore', 'health_score', 'score']);
-            const risk = getString(prediction, ['risk', 'riskLevel', 'risk_level']);
-            const anomaly = getString(prediction, ['anomaly', 'anomalyStatus', 'anomaly_status']);
-            const recommendation = getString(prediction, ['recommendation', 'advice', 'suggestion']);
-            const lastUpdated = readValue({ ...live, ...prediction }, ['lastUpdated', 'timestamp', 'updatedAt', 'time'], undefined);
-
-            if (heartRate !== null) appendHistory('heartRate', heartRate);
-            if (spO2 !== null) appendHistory('spO2', spO2);
-            if (temperature !== null) appendHistory('temperature', temperature);
-            if (ecg !== null) appendHistory('ecg', ecg);
-            if (emg !== null) appendHistory('emg', emg);
-            if (accelerometer !== null) appendHistory('accelerometer', accelerometer);
-            if (healthScore !== null) appendHistory('healthScore', healthScore);
-
-            setMetric('heart-rate-value', heartRate, ' bpm', '#4441cc');
-            setMetric('spO2-value', spO2, '%', '#00802d');
-            setMetric('temperature-value', temperature, '°C', '#885200');
-            setMetric('health-score', healthScore, ' / 100', '#4441cc');
-            setText('ecg-value', ecg === null ? '--' : `${ecg.toFixed(2)} mV`);
-            setText('emg-value', emg === null ? '--' : `${emg.toFixed(2)} mV`);
-            setText('accelerometer-value', accelerometer === null ? '--' : `${accelerometer.toFixed(2)} g`);
-            setText('recommendation', recommendation || '--');
-            setText('last-updated', lastUpdated ? formatTimestamp(lastUpdated) : '--');
-            updateRiskBadge(risk);
-            updateAnomalyBadge(anomaly);
-
-            renderChart('heart-rate-chart', historyStore.heartRate, '#4441cc');
-            renderChart('spo2-chart', historyStore.spO2, '#00802d');
-            renderChart('temperature-chart', historyStore.temperature, '#885200');
-            renderChart('health-score-chart', historyStore.healthScore, '#4441cc');
-            renderChart('ecg-chart', historyStore.ecg, '#4d4ad5');
-            renderChart('emg-chart', historyStore.emg, '#ba1a1a');
-            renderChart('accelerometer-chart', historyStore.accelerometer, '#0077b6');
-        }
-
-        
-
-        function initializeFirebaseDashboard() {
-            try {
-                if (!window.firebase) {
-                    throw new Error('Firebase SDK not loaded.');
-                }
-
-                const app = firebase.apps.length ? firebase.app() : firebase.initializeApp({
-                    databaseURL: 'https://bodymetrics-23c36-default-rtdb.firebaseio.com/'
-                });
-                const database = firebase.database(app);
-                const liveRef = database.ref('users/user1/live');
-                const predictionRef = database.ref('users/user1/prediction');
-
-                database.ref('.info/connected').on('value', (snapshot) => {
-                    const state = document.getElementById('connection-state');
-                    if (state) {
-                        state.textContent = snapshot.val() ? 'Live sync on' : 'Connecting…';
-                    }
-                });
-
-                liveRef.on('value', (snapshot) => {
-                    const liveData = snapshot.val() || {};
-                    window.dashboardLive = liveData;
-
-                    const currentPrediction = window.dashboardPrediction || {};
-                    updateDashboard(liveData, currentPrediction);
-                });
-
-                predictionRef.on('value', (snapshot) => {
-                    const predictionData = snapshot.val() || {};
-                    window.dashboardPrediction = predictionData;
-                    const currentLive = window.dashboardLive || {};
-                    updateDashboard(currentLive, predictionData);
-                });
-
-                // Also fetch initial values once to ensure immediate render of vitals/prediction
-                Promise.all([liveRef.once('value'), predictionRef.once('value')])
-                    .then(([liveSnap, predSnap]) => {
-                        const liveData = (liveSnap && liveSnap.val()) || {};
-                        const predData = (predSnap && predSnap.val()) || {};
-                        window.dashboardLive = liveData;
-                        window.dashboardPrediction = predData;
-                        updateDashboard(liveData, predData);
-                    })
-                    .catch((err) => {
-                        console.warn('Initial Firebase fetch failed, falling back to realtime listeners.', err);
-                    });
-
-                window.dashboardLive = {};
-                window.dashboardPrediction = {};
-            } catch (error) {
-                console.warn('Firebase integration unavailable, using fallback demo values.', error);
-                document.getElementById('connection-state').textContent = 'Demo mode';
-                updateDashboard(fallbackLive, fallbackPrediction);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeFirebaseDashboard();
-            document.querySelectorAll('.glass-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-4px)';
-                    card.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                    card.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.08)';
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0)';
-                    card.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.04)';
-                });
-            });
-        });
-    </script>
-</body></html>
+  zone.addEventListener('pointerdown',e=>{
+    dragging=true;pointerId=e.pointerId;startX=e.clientX;dx=0;
+    zone.setPointerCapture(pointerId);zone.classList.add('grabbing');
+    zone.style.transition='none';
+  });
+  zone.addEventListener('pointermove',e=>{
+    if(!dragging || e.pointerId!==pointerId)return;
+    dx=e.clientX-startX;visual(dx);
+  });
+  zone.addEventListener('pointerup',e=>{
+    if(!dragging || e.pointerId!==pointerId)return;
+    dragging=false;zone.classList.remove('grabbing');
+    if(dx<=-innerWidth*threshold) complete(-1);
+    else if(dx>=innerWidth*threshold) complete(1);
+    else {zone.style.transition='transform .35s ease';reset();}
+  });
+  zone.addEventListener('pointercancel',()=>{dragging=false;reset()});
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft')complete(-1);
+    if(e.key==='ArrowRight')complete(1);
+  });
+})();
+</script>
+</body>
+</html>
