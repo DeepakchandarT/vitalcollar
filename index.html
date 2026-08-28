@@ -254,8 +254,50 @@
     .gesture-arrow-left,.gesture-arrow-right{ animation:none; opacity:.5; }
   }
   @media(max-width:430px){
-    .fork-gesture{ width:30vw; min-width:118px; height:64px; }
-    .side{ width:36%; }
+    /* Keep both directions fully inside the mobile viewport.
+       The previous 36% + 30vw + 36% layout exceeded 100vw and
+       pushed the PAUSE side off-screen on phones. */
+    #fork{ padding-top:8vh; }
+    .fork-top{ padding:0 6vw; }
+    .fork-eyebrow{ font-size:.62rem; letter-spacing:.27em; }
+    .fork-title{ font-size:clamp(1.5rem,6.8vw,2rem); }
+    .fork-hint{ font-size:.68rem; }
+    .fork-interactive{
+      padding:0 4vw;
+      gap:0;
+      width:100%;
+      overflow:visible;
+    }
+    .side{
+      width:27%;
+      min-width:0;
+      flex:0 0 27%;
+    }
+    .fork-gesture{
+      width:46%;
+      min-width:0;
+      max-width:none;
+      height:70px;
+      flex:0 0 46%;
+    }
+    .side-arrow{
+      font-size:clamp(.62rem,3.2vw,.86rem);
+      letter-spacing:.07em;
+      white-space:nowrap;
+    }
+    .side-brand{
+      font-size:clamp(.95rem,4.4vw,1.35rem);
+      margin-top:.65em;
+    }
+    .side-tags{
+      font-size:clamp(.52rem,2.25vw,.64rem);
+      line-height:1.45;
+      max-width:120px;
+      margin-top:.5em;
+    }
+    .side-left .side-tags{ text-align:left; }
+    .side-right .side-tags{ text-align:right; margin-left:auto; }
+    .swipe-hint{ margin-bottom:3.2vh; }
   }
 
   /* elongating motion streak — used during a real, active drag */
@@ -743,8 +785,8 @@
     <div class="fork-interactive" id="fork-interactive">
       <div class="side side-left" id="side-left">
         <div class="side-arrow">← MOVE</div>
-        <div class="side-brand"></div>
-        <div class="side-tags"></div>
+        <div class="side-brand">Build strength</div>
+        <div class="side-tags">Workouts · Mobility · Energy</div>
       </div>
 
       <div class="fork-gesture" aria-hidden="true">
@@ -776,8 +818,8 @@
 
       <div class="side side-right" id="side-right">
         <div class="side-arrow">PAUSE →</div>
-        <div class="side-brand"></div>
-        <div class="side-tags"></div>
+        <div class="side-brand">Find stillness</div>
+        <div class="side-tags">Breathing · Recovery · Mindfulness</div>
       </div>
     </div>
 
