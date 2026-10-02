@@ -1264,14 +1264,14 @@
       <span><i>✦</i> Movement for real life</span>
       <span><i>✦</i> Cycle-synced training</span>
       <span><i>✦</i> Certified female coaches</span>
-      <span><i>✦</i> 30-day gentle guarantee</span>
+      <span><i>✦</i> Physio-led support</span>
     </span>
     <span class="trust-group">
       <span><i>✦</i> Women-centred coaching</span>
       <span><i>✦</i> Movement for real life</span>
       <span><i>✦</i> Cycle-synced training</span>
       <span><i>✦</i> Certified female coaches</span>
-      <span><i>✦</i> 30-day gentle guarantee</span>
+      <span><i>✦</i> Physio-led support</span>
     </span>
   </div>
 </div>
@@ -2049,26 +2049,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
   }, { threshold: 0.01, rootMargin: '0px 0px -10% 0px' });
   revealEls.forEach(el => io.observe(el));
-
-  // ---- Floating review rotator ----
-  const floatReviews = [
-    { text: '"Febfitwellness didn\'t just change my body — it changed how I talk to myself."', name: 'A supportive plan, shaped around you' },
-    { text: '"The community checked in on me before I even asked for help."', name: 'Kavya S. · member since 2024' },
-    { text: '"First plan that respected my rest days instead of punishing them."', name: 'Mei L. · member since 2022' }
-  ];
-  let frIndex = 0;
-  const frText = document.getElementById('floatReviewText');
-  const frName = document.getElementById('floatReviewName');
-  setInterval(() => {
-    frIndex = (frIndex + 1) % floatReviews.length;
-    frText.style.opacity = 0; frName.style.opacity = 0;
-    setTimeout(() => {
-      frText.textContent = floatReviews[frIndex].text;
-      frName.textContent = floatReviews[frIndex].name;
-      frText.style.transition = 'opacity .4s ease'; frName.style.transition = 'opacity .4s ease';
-      frText.style.opacity = 1; frName.style.opacity = 1;
-    }, 300);
-  }, 4200);
 
   // ---- Testimonial carousel ----
   const track = document.getElementById('carouselTrack');
