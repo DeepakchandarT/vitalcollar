@@ -11,13 +11,14 @@
     html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--paper)}
     .view{position:fixed;inset:0;width:100%;height:100%;border:0;background:#fff;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .22s ease;}
     .view.is-active{visibility:visible;opacity:1;pointer-events:auto;}
-    .mode-switch{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:4px;padding:5px;background:rgba(255,253,248,.96);border:1px solid rgba(29,29,29,.15);border-radius:999px;box-shadow:0 12px 34px rgba(30,20,45,.2);backdrop-filter:blur(14px);font:700 13px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
-    .mode-option{position:relative;display:flex;align-items:center;justify-content:center;min-width:100px;min-height:42px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:#5b5961;cursor:pointer;transition:background .2s ease,color .2s ease,box-shadow .2s ease;}
+    .mode-switch{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:3px;padding:4px;background:rgba(255,253,248,.86);border:1px solid rgba(29,29,29,.12);border-radius:999px;box-shadow:0 14px 34px -18px rgba(30,20,45,.5);backdrop-filter:blur(12px);font:700 12px/1.1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:transform .34s cubic-bezier(.22,1,.36,1),opacity .25s ease;}
+    .mode-switch.is-hidden{transform:translate(-50%,calc(100% + 36px));opacity:0;pointer-events:none}
+    .mode-option{position:relative;display:flex;align-items:center;justify-content:center;min-width:90px;min-height:40px;padding:0 15px;border:0;border-radius:999px;background:transparent;color:#5b5961;cursor:pointer;transition:background .3s ease,color .3s ease,box-shadow .3s ease;}
     .mode-option[aria-pressed="true"]{color:#fff;box-shadow:0 5px 15px rgba(38,28,53,.2)}
     #fitnessButton[aria-pressed="true"]{background:var(--purple)}
     #wellnessButton[aria-pressed="true"]{background:var(--teal)}
     .mode-option:focus-visible{outline:3px solid #f1b735;outline-offset:2px}
-    @media(max-width:480px){.mode-switch{bottom:max(12px,env(safe-area-inset-bottom));}.mode-option{min-width:92px;min-height:40px;padding:0 14px;font-size:12px}}
+    @media(max-width:480px){.mode-switch{bottom:max(10px,env(safe-area-inset-bottom));}.mode-option{min-width:84px;min-height:38px;padding:0 12px;font-size:11.5px}}
     @media(prefers-reduced-motion:reduce){.view,.mode-option{transition:none}}
   </style>
 </head>
@@ -36,6 +37,7 @@
       const wellnessView=document.getElementById('wellnessView');
       const fitnessButton=document.getElementById('fitnessButton');
       const wellnessButton=document.getElementById('wellnessButton');
+      const modeSwitch=document.querySelector('.mode-switch');
       function show(mode,updateHash){
         const wellness=mode==='wellness';
         fitnessView.classList.toggle('is-active',!wellness);
@@ -44,12 +46,24 @@
         wellnessView.setAttribute('aria-hidden',wellness?'false':'true');
         fitnessButton.setAttribute('aria-pressed',wellness?'false':'true');
         wellnessButton.setAttribute('aria-pressed',wellness?'true':'false');
+        document.body.dataset.theme=wellness?'wellness':'fitness';
         document.title=wellness?'Febfitwellness — Wellness':'Febfitwellness — Fitness';
         if(updateHash) history.replaceState(null,'','#'+(wellness?'wellness':'fitness'));
+        const activeFrame=wellness?wellnessView:fitnessView;
+        try{activeFrame.contentWindow.setMoodTheme(wellness?'wellness':'fitness')}catch(error){}
       }
       fitnessButton.addEventListener('click',()=>show('fitness',true));
       wellnessButton.addEventListener('click',()=>show('wellness',true));
       window.addEventListener('hashchange',()=>show(location.hash==='#wellness'?'wellness':'fitness',false));
+      window.addEventListener('message',event=>{
+        if(event.source!==fitnessView.contentWindow&&event.source!==wellnessView.contentWindow)return;
+        if(event.data&&event.data.type==='febfit-floating')modeSwitch.classList.toggle('is-hidden',Boolean(event.data.hidden));
+        if(event.data&&event.data.type==='febfit-mode'){
+          show(event.data.mode,true);
+          const frame=event.data.mode==='wellness'?wellnessView:fitnessView;
+          setTimeout(()=>{try{frame.contentWindow.document.getElementById(event.data.anchor)?.scrollIntoView({behavior:'smooth'})}catch(error){}},80);
+        }
+      });
       show(location.hash==='#wellness'?'wellness':'fitness',false);
     })();
   </script>

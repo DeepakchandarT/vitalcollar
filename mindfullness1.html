@@ -7,7 +7,7 @@
 <title>FebFit Wellness Hub — Move. Strengthen. Nourish. Breathe.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     /* ---- One-Hue Teal Palette (intensities of the dot colour, #00A896) ---- */
@@ -1191,8 +1191,10 @@ header .logo,.footer-brand .logo{gap:0}
   @media(max-width:640px){.whatsapp-fab{right:16px;bottom:84px;width:52px;height:52px}.whatsapp-fab svg{width:26px;height:26px}}
 </style>
 
+<link rel="stylesheet" href="shared-ui.css">
+<link rel="stylesheet" href="mood.css">
 </head>
-<body class="no-js">
+<body class="no-js wellness-theme">
 <!-- FebFit postcard back control: intentionally bottom-left only -->
 <button class="febfit-postcard-back" type="button" aria-label="Back to FebFit home"
   onclick="if(window.parent && window.parent !== window && typeof window.parent.goToFork==='function'){window.parent.goToFork();}else{window.location.href='index.html';}">
@@ -1213,7 +1215,7 @@ header .logo,.footer-brand .logo{gap:0}
 <header id="siteHeader">
   <div class="wrap">
     <nav>
-      <a href="#" class="logo"><img src="febwellness-logo-transparent.png" alt="Febwellness — Physiotherapy · Wellness Hub"></a>
+      <a href="#" class="logo"><img src="febwellness-logo.webp" alt="Febwellness — Physiotherapy · Wellness Hub"></a>
       <ul class="nav-links">
         <li><a href="#pillars">Mindfulness</a></li>
         <li><a href="#rehab">Rehabilitation</a></li>
@@ -1222,7 +1224,8 @@ header .logo,.footer-brand .logo{gap:0}
       </ul>
       <div class="nav-cta">
         <a href="#pricing" class="btn btn-ghost btn-sm">Meet Dr. Febisha</a>
-        <a href="#pricing" class="btn btn-primary btn-sm">Start Your Journey</a>
+        <a href="#contact" class="btn btn-primary btn-sm">Start Your Journey</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </div>
@@ -1248,12 +1251,12 @@ header .logo,.footer-brand .logo{gap:0}
         <div class="scrap-doodle one">✦</div>
 
         <div class="scrap-photo rear">
-          <img src="fitness-india.jpg" alt="Quiet mindfulness practice">
+          <img src="wellness-editorial.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman taking a quiet mindful pause in a warm room">
           <span class="cap">make space for stillness</span>
         </div>
 
         <div class="scrap-photo front">
-          <img src="mindfulness-india.jpg" alt="Yoga-inspired mindful movement">
+          <img src="wellness-editorial.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="Gentle breathing and mobility practice in calm morning light">
           <span class="cap">move gently, feel deeply</span>
         </div>
       </div>
@@ -1275,7 +1278,7 @@ header .logo,.footer-brand .logo{gap:0}
       <div class="about-media reveal">
         <div class="polaroid" style="max-width:420px;">
           <span class="tape top-left"></span>
-          <img src="fitness-india.jpg" alt="Soft morning light over a still forest — the calm FebFit mindfulness sessions are built around">
+          <img src="wellness-editorial.webp" width="1280" height="853" loading="lazy" decoding="async" alt="A calm seated breathing practice in soft morning light">
           <span class="cap">breathe in, begin again</span>
         </div>
         <div class="badge"><strong>Not selfish.</strong>Taking care of yourself is essential.</div>
@@ -1427,7 +1430,7 @@ header .logo,.footer-brand .logo{gap:0}
       <div class="about-media reveal">
         <div class="polaroid" style="max-width:400px;">
           <span class="tape top-right"></span>
-          <img src="aldrin-febisha.jpg" alt="Dr. D. M. Aldrin Febisha, physiotherapist and sports rehabilitation specialist">
+          <img src="aldrin-febisha.jpg" width="1536" height="1536" loading="lazy" decoding="async" alt="Dr. D. M. Aldrin Febisha, physiotherapist and sports rehabilitation specialist">
           <span class="cap">train. recover. thrive.</span>
         </div>
       </div>
@@ -1463,12 +1466,60 @@ header .logo,.footer-brand .logo{gap:0}
   </div>
 </section>
 
+<section class="fwm" id="mood" data-theme="wellness" aria-labelledby="fwm-h">
+  <div class="fwm-in">
+    <p class="fwm-hand">check in with yourself</p>
+    <h2 id="fwm-h">How are you feeling today?</h2>
+    <p class="fwm-sub">Choose what feels closest. We’ll suggest a gentle next step.</p>
+    <div class="fwm-moods" data-mood-options role="group" aria-label="Choose your mood"></div>
+    <div class="fwm-card" data-mood-card hidden aria-live="polite"></div>
+    <div class="fwm-week">
+      <p class="fwm-wk-h">your week</p>
+      <div class="fwm-days" data-mood-days></div>
+      <p class="fwm-streak" data-mood-streak></p>
+      <p class="fwm-note">Saved only on this device.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="wrap contact-shell">
+    <div class="contact-copy reveal">
+      <span class="eyebrow">Start your journey</span>
+      <h2>Tell us how we can help.</h2>
+      <p>Share three quick details. The FebFit team will contact you to discuss the right wellness or physiotherapy support for you.</p>
+    </div>
+    <form class="contact-form febfit-contact-form reveal reveal-delay-1" id="wellnessContactForm" data-source="wellness">
+      <div class="contact-field">
+        <label for="wellnessName">Your name</label>
+        <input id="wellnessName" name="full_name" autocomplete="name" required>
+      </div>
+      <div class="contact-field">
+        <label for="wellnessPhone">WhatsApp number</label>
+        <input id="wellnessPhone" name="contact_number" type="tel" inputmode="tel" autocomplete="tel" required>
+      </div>
+      <div class="contact-field">
+        <label for="wellnessHelp">What would you like help with?</label>
+        <select id="wellnessHelp" name="support_needed" required>
+          <option value="">Choose one</option>
+          <option>Mindfulness and stress support</option>
+          <option>Physiotherapy assessment</option>
+          <option>Sports rehabilitation</option>
+          <option>Nutrition and holistic wellness</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit">Send My Details →</button>
+      <p class="contact-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#" class="logo"><img src="febwellness-logo-transparent.png" alt="Febwellness — Physiotherapy · Wellness Hub"></a>
+        <a href="#" class="logo"><img src="febwellness-logo.webp" alt="Febwellness — Physiotherapy · Wellness Hub"></a>
         <p>Physiotherapy × Fitness × Strength &amp; Conditioning × Nutrition × Mindfulness — this is what wellness looks like as a lifestyle.</p>
       </div>
       <div>
@@ -1586,5 +1637,7 @@ header .logo,.footer-brand .logo{gap:0}
 <a href="https://wa.me/919025863098" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
 </a>
+<script src="mood.js"></script>
+<script src="shared-ui.js"></script>
 </body>
 </html>

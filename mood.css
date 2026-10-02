@@ -1,0 +1,27 @@
+.fwm{
+  --accent:var(--feb-accent);--deep:var(--feb-deep);--soft:var(--feb-soft);--ink:var(--feb-deep);
+  padding:var(--feb-section) var(--feb-gutter) calc(144px + env(safe-area-inset-bottom,0px));
+  background:linear-gradient(180deg,var(--soft),color-mix(in srgb,var(--soft) 42%,#fff));
+  color:var(--ink);font:400 16px/1.65 var(--ff-body);transition:background .35s ease,color .35s ease
+}
+.fwm[data-theme="wellness"]{--accent:#087f70;--deep:#064e46;--soft:#e6f5f1;--ink:#123e39}
+.fwm *{box-sizing:border-box}.fwm-in{max-width:760px;margin:0 auto;text-align:center}
+.fwm-hand{font:600 22px/1 var(--ff-hand);color:var(--accent);margin:0 0 9px}
+.fwm h2{font:600 clamp(32px,6vw,46px)/1.08 var(--ff-display);margin:0 0 14px;color:var(--deep)}
+.fwm-sub{margin:0 auto 30px;max-width:40ch;opacity:.8}
+.fwm-moods{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:540px;margin:0 auto}
+.fwm-m{min-width:0;min-height:112px;background:#fff;border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);border-radius:14px;padding:14px 6px 12px;color:var(--accent);cursor:pointer;font:600 14px var(--ff-body);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;transition:transform .2s ease,background .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease}
+.fwm-m svg{width:42px;height:42px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.fwm-m span{color:var(--ink)}
+@media(hover:hover){.fwm-m:hover{transform:translateY(-2px);box-shadow:0 14px 24px -22px var(--deep)}}
+.fwm-m[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 14px 28px -20px var(--deep)}.fwm-m[aria-pressed="true"] span{color:#fff}
+.fwm :focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 32%,white);outline-offset:3px}
+.fwm-card{max-width:540px;margin:30px auto 0;background:#fff;border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);border-radius:14px;padding:24px;text-align:left;transform:rotate(-1.5deg);box-shadow:0 18px 40px -24px var(--deep);animation:fwmin .35s var(--feb-ease)}
+@keyframes fwmin{from{opacity:0;transform:rotate(-1.5deg) translateY(10px)}to{opacity:1;transform:rotate(-1.5deg)}}
+.fwm-tag{display:inline-block;background:var(--soft);color:var(--deep);font-weight:700;font-size:13px;padding:4px 11px;border-radius:999px}
+.fwm-card h3{font:600 26px/1.15 var(--ff-display);margin:12px 0 8px;color:var(--deep)}.fwm-card p{margin:0 0 18px}.fwm-act{display:flex;gap:10px;flex-wrap:wrap}
+.fwm-btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 20px!important;background:var(--accent);color:#fff;text-decoration:none;border:1px solid var(--accent);cursor:pointer}.fwm-btn.alt{background:transparent;color:var(--deep);border-color:color-mix(in srgb,var(--accent) 38%,transparent)}
+.fwm-breath{display:grid;place-items:center;margin:5px 0 18px}.fwm-orb{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font:600 16px var(--ff-display);transform:scale(.62);transition:transform 4s ease-in-out}
+.fwm-week{max-width:540px;margin:32px auto 0}.fwm-wk-h{font:600 20px var(--ff-hand);color:var(--accent);margin:0 0 9px}.fwm-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.fwm-d{background:rgba(255,255,255,.72);border-radius:10px;padding:8px 0 6px;font-size:12px;color:var(--ink)}.fwm-d svg{display:block;margin:4px auto 0;width:25px;height:25px;fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.fwm-d i{display:block;width:7px;height:7px;margin:10px auto 9px;border-radius:50%;background:color-mix(in srgb,var(--accent) 24%,transparent)}.fwm-d.today{outline:2px solid color-mix(in srgb,var(--accent) 58%,white)}.fwm-streak{margin:12px 0 0;font-size:14px;opacity:.85}.fwm-note{font-size:12px;opacity:.66;margin:5px 0 0}
+.fwm [hidden]{display:none!important}
+@media(max-width:520px){.fwm{padding-inline:20px}.fwm-moods{gap:9px}.fwm-m{min-height:104px;font-size:13px}.fwm-m svg{width:38px;height:38px}.fwm-card{padding:22px 20px}.fwm-act{display:grid}.fwm-btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.fwm *{transition:none!important;animation:none!important}.fwm-orb{transform:none!important}}
