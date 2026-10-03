@@ -1334,7 +1334,12 @@
         <div class="book-page" data-i="0">
           <div class="flip-card">
             <span class="flip-tag">page 1</span>
-            <div class="flip-photo"></div>
+            <div class="flip-photo cycle-collage" aria-label="Cycle-aware training across changing energy levels">
+              <img class="cycle-shot cycle-shot-a" src="fitness-india.jpg" width="1400" height="933" loading="lazy" decoding="async" alt="Indian woman taking a calm recovery moment">
+              <img class="cycle-shot cycle-shot-b" src="fitness-editorial.webp" width="1280" height="853" loading="lazy" decoding="async" alt="Indian woman doing a controlled strength exercise">
+              <img class="cycle-shot cycle-shot-c" src="wellness-editorial.webp" width="1280" height="853" loading="lazy" decoding="async" alt="Indian woman stretching during a lower-energy day">
+              <div class="cycle-rhythm" aria-hidden="true"><span>Rest</span><i></i><span>Build</span><i></i><span>Peak</span><i></i><span>Reset</span></div>
+            </div>
             <svg class="flip-sparkle" style="top:-10px; right:8px; width:22px; height:22px;" viewBox="0 0 24 24" fill="none"><path d="M12 0l2.2 8.8L23 11l-8.8 2.2L12 22l-2.2-8.8L1 11l8.8-2.2z" fill="#9B7FD4"/></svg>
             <div class="flip-note">
               <svg class="flip-heart" viewBox="0 0 20 18" fill="none" stroke-width="1.6"><path d="M10 17S1 11 1 5.6C1 2.4 3.4 1 5.6 1 7.6 1 9 2.3 10 4.2 11 2.3 12.4 1 14.4 1 16.6 1 19 2.4 19 5.6 19 11 10 17 10 17z"/></svg>
@@ -1545,25 +1550,25 @@
     <div class="pricing-unlocked" id="pricingUnlocked">
       <div class="section-head reveal">
         <span class="eyebrow" style="justify-content:center;">Your starting point</span>
-        <h2>Insights prepared for <span class="grad-text" id="planForName">you</span></h2>
+        <h2>Your FebFit starting insights</h2>
         <p>These wellness insights help guide a conversation with the FebFit team. They are not a diagnosis or a substitute for a clinical assessment.</p>
       </div>
 
       <div class="results-summary reveal" id="resultsSummary">
         <div class="rs-card">
-          <div class="rs-label">Your BMI</div>
-          <div class="rs-value" id="rsBmiValue">—</div>
-          <div class="rs-sub" id="rsBmiSub">A starting point, not a verdict — one number among many that make up your health.</div>
-        </div>
-        <div class="rs-card">
           <div class="rs-label">Primary goal</div>
           <div class="rs-value" id="rsGoalValue" style="font-size:19px;">—</div>
-          <div class="rs-sub">Everything below is shaped around this first.</div>
+          <div class="rs-sub">The main outcome your starting plan should support.</div>
         </div>
         <div class="rs-card">
-          <div class="rs-label">Recommended plan</div>
-          <div class="rs-value" id="rsPlanValue" style="font-size:19px;">—</div>
-          <div class="rs-sub" id="rsPlanSub">Based on your goals, lifestyle and current activity level.</div>
+          <div class="rs-label">Training setup</div>
+          <div class="rs-value" id="rsSetupValue" style="font-size:19px;">—</div>
+          <div class="rs-sub" id="rsSetupSub">A realistic place and duration for your sessions.</div>
+        </div>
+        <div class="rs-card">
+          <div class="rs-label">Movement care</div>
+          <div class="rs-value" id="rsCareValue" style="font-size:19px;">—</div>
+          <div class="rs-sub">Pain or limitations should shape how your plan begins.</div>
         </div>
       </div>
 
@@ -1575,7 +1580,7 @@
         </div>
         <div class="metrics-grid" id="metricsGrid"></div>
         <div class="focus-areas" id="focusAreas"></div>
-        <p class="br-disclaimer">This is a wellness estimate generated from a single photo and your height, not a medical or diagnostic measurement. Actual body composition and change over time depend on many factors — your coach will confirm specifics with you directly.</p>
+        <p class="br-disclaimer">This is a wellness estimate generated from a single photo, not a medical or diagnostic measurement. Your coach or physiotherapist should confirm anything that needs clinical attention.</p>
       </div>
 
       <div class="plans">
@@ -1716,42 +1721,6 @@
     <div id="formStepsWrap">
       <div class="step-count" id="stepCount">Question 1</div>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-
-      <div class="form-step active" data-step="1">
-        <h3>Your Details</h3>
-        <p>These are the initial required details we need to personalise your plan.</p>
-        <div class="field"><label>Full Name</label><input type="text" id="fFullName" data-ans="fullName" placeholder="Ananya Sharma" required></div>
-        <div class="field"><label>Email ID</label><input type="email" id="fEmail" data-ans="email" placeholder="you@email.com" required></div>
-        <div class="field"><label>Contact Number</label><input type="tel" id="fContact" data-ans="contactNumber" placeholder="+91 98765 43210" required></div>
-      </div>
-
-      <div class="form-step" data-step="bmi">
-        <h3>Let's check your BMI</h3>
-        <p>Just a starting reference point — never the whole picture of your health.</p>
-        <div class="unit-toggle" id="unitToggle">
-          <button type="button" class="active" data-unit="metric">cm / kg</button>
-          <button type="button" data-unit="imperial">ft-in / lb</button>
-        </div>
-        <div id="metricFields">
-          <div class="field-row">
-            <div class="field"><label>Height (cm)</label><input type="number" id="fHeightCm" data-ans="heightCm" placeholder="162" min="100" max="230"></div>
-            <div class="field"><label>Weight (kg)</label><input type="number" id="fWeightKg" data-ans="weightKg" placeholder="60" min="30" max="220"></div>
-          </div>
-        </div>
-        <div id="imperialFields" style="display:none;">
-          <div class="field-row">
-            <div class="field"><label>Height (ft)</label><input type="number" id="fHeightFt" placeholder="5" min="3" max="7"></div>
-            <div class="field"><label>Height (in)</label><input type="number" id="fHeightIn" placeholder="4" min="0" max="11"></div>
-            <div class="field"><label>Weight (lb)</label><input type="number" id="fWeightLb" placeholder="132" min="60" max="500"></div>
-          </div>
-        </div>
-        <div class="field"><label>Age</label><input type="number" id="fAge" data-ans="age" placeholder="28" min="14" max="80" required></div>
-        <div class="bmi-live" id="bmiLive">
-          <div class="bmi-num" id="bmiLiveNum">--<span>Your BMI</span></div>
-          <div class="bmi-tag" id="bmiLiveTag">Enter your details</div>
-        </div>
-        <p class="bmi-note">BMI is a simple ratio of height to weight — it doesn't account for muscle, frame or fitness level. Your coach looks at the full picture, not just this number.</p>
-      </div>
 
       <div class="form-step photo-step" data-step="photo">
         <p class="optional-tag">Optional — skip anytime</p>
@@ -1974,7 +1943,7 @@
     <div class="form-step success-step" id="successStep" data-step="success">
       <div class="success-icon">✓</div>
       <h3>Your starting insights are ready</h3>
-      <p>Thanks, <span id="successName">friend</span> — we’ve shaped a useful summary from your answers.</p>
+      <p>We’ve shaped a useful starting summary from your four answers and optional photo insights.</p>
       <button class="btn btn-primary" id="viewPricingBtn">View My Insights →</button>
     </div>
   </div>
@@ -2132,184 +2101,20 @@
   const backBtn = document.getElementById('backBtn');
   const stepCount = document.getElementById('stepCount');
   const progressFill = document.getElementById('progressFill');
-  const steps = [...document.querySelectorAll('.form-step[data-step]')].filter(s => s.dataset.step !== 'success');
+  const stepKeys = ['2','17','18','19','photo'];
+  [...document.querySelectorAll('.form-step[data-step]')]
+    .filter(step => step.dataset.step !== 'success' && !stepKeys.includes(step.dataset.step))
+    .forEach(step => step.remove());
+  const allFormSteps = [...document.querySelectorAll('.form-step[data-step]')].filter(s => s.dataset.step !== 'success');
+  const steps = stepKeys.map(key => document.querySelector(`.form-step[data-step="${key}"]`));
   const successStep = document.getElementById('successStep');
   const formStepsWrap = document.getElementById('formStepsWrap');
   const totalSteps = steps.length;
   let stepIndex = 0;
 
-  // ---- Google Sheets form database configuration ----
-  // Paste your deployed Google Apps Script Web App URL here.
-  // Do NOT put Google account passwords, API keys, or service credentials in this HTML.
-  const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwS_XupTwhr1nZcBN5Kl3L4559Zndvlp7MVKlcXSxlgQ1qHyImDsugCb5eoeCkv6Cyl/exec';
-
-  function buildFormPayload() {
-    const bodyMetrics = window.__febfitBodyMetrics || null;
-    return {
-      submission_id: (crypto.randomUUID ? crypto.randomUUID() : 'sub-' + Date.now() + '-' + Math.random().toString(36).slice(2)),
-      submitted_at: new Date().toISOString(),
-      full_name: answers.fullName || null,
-      email: answers.email || null,
-      contact_number: answers.contactNumber || null,
-      age: answers.age ? Number(answers.age) : null,
-      height_cm: answers.heightCm ? Number(answers.heightCm) : null,
-      weight_kg: answers.weightKg ? Number(answers.weightKg) : null,
-      bmi: typeof answers.bmi === 'number' && isFinite(answers.bmi) ? Number(answers.bmi.toFixed(2)) : null,
-      bmi_category: answers.bmiCategory || null,
-      primary_goal: answers.primaryGoal || null,
-      exercise_frequency: answers.exerciseFrequency || null,
-      eating_habits: answers.eatingHabits || null,
-      motivation: answers.motivation || null,
-      sleep_hours: answers.sleepHours || null,
-      lifestyle_activity: answers.lifestyleActivity || null,
-      fitness_program_history: answers.fitnessProgramHistory || null,
-      biggest_challenge: answers.biggestChallenge || null,
-      workout_preference: answers.workoutPreference || null,
-      meal_prep_confidence: answers.mealPrepConfidence || null,
-      water_intake: answers.waterIntake || null,
-      stress_level: answers.stressLevel || null,
-      coaching_type: answers.coachingType || null,
-      commitment_level: answers.commitmentLevel || null,
-      joining_reason: answers.joiningReason || null,
-      training_location: answers.trainingLocation || null,
-      session_length: answers.sessionLength || null,
-      movement_limitation: answers.movementLimitation || null,
-      consistency_support: answers.consistencySupport || null,
-      body_metrics: bodyMetrics
-    };
-  }
-
-  function getPendingSubmissions() {
-    try { return JSON.parse(localStorage.getItem('febfit_pending_submissions') || '[]'); }
-    catch (_) { return []; }
-  }
-
-  function setPendingSubmissions(items) {
-    localStorage.setItem('febfit_pending_submissions', JSON.stringify(items.slice(-20)));
-  }
-
-  async function sendToGoogleSheets(payload) {
-    if (!GOOGLE_SHEETS_WEB_APP_URL || GOOGLE_SHEETS_WEB_APP_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) {
-      throw new Error('Google Sheets Web App URL is not configured.');
-    }
-
-    // text/plain avoids a browser CORS preflight. The Apps Script reads e.postData.contents.
-    await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload),
-      keepalive: true
-    });
-    return true;
-  }
-
-  async function saveFormSubmission() {
-    const payload = buildFormPayload();
-    const pending = getPendingSubmissions();
-
-    // Keep a local copy until the request has been handed to the Web App.
-    const exists = pending.some(x => x.submission_id === payload.submission_id);
-    if (!exists) {
-      pending.push(payload);
-      setPendingSubmissions(pending);
-    }
-
-    try {
-      await sendToGoogleSheets(payload);
-      setPendingSubmissions(getPendingSubmissions().filter(x => x.submission_id !== payload.submission_id));
-      return { ok: true };
-    } catch (err) {
-      console.error('Google Sheets submission failed; kept locally for retry.', err);
-      return { ok: false, pending: true, error: err };
-    }
-  }
-
-  async function retryPendingSubmissions() {
-    const pending = getPendingSubmissions();
-    if (!pending.length || !GOOGLE_SHEETS_WEB_APP_URL || GOOGLE_SHEETS_WEB_APP_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) return;
-    const remaining = [];
-    for (const payload of pending) {
-      try {
-        await sendToGoogleSheets(payload);
-      } catch (_) {
-        remaining.push(payload);
-      }
-    }
-    setPendingSubmissions(remaining);
-  }
-
-  window.addEventListener('online', retryPendingSubmissions);
-  setTimeout(retryPendingSubmissions, 2500);
-
   const answers = {
-    fullName: '', email: '', contactNumber: '',
-    heightCm: '', weightKg: '', age: '', bmi: null, bmiCategory: '',
-    primaryGoal: '', exerciseFrequency: '', eatingHabits: '', motivation: '',
-    sleepHours: '', lifestyleActivity: '', fitnessProgramHistory: '', biggestChallenge: '',
-    workoutPreference: '', mealPrepConfidence: '', waterIntake: '', stressLevel: '',
-    coachingType: '', commitmentLevel: '', joiningReason: '',
-    trainingLocation: '', sessionLength: '', movementLimitation: '', consistencySupport: ''
+    primaryGoal: '', trainingLocation: '', sessionLength: '', movementLimitation: ''
   };
-
-  // ---- BMI helpers ----
-  function computeBMI(heightCm, weightKg) {
-    if (!heightCm || !weightKg) return null;
-    const m = heightCm / 100;
-    return weightKg / (m * m);
-  }
-  function bmiCategory(bmi) {
-    if (!bmi) return '';
-    if (bmi < 18.5) return 'Below range';
-    if (bmi < 25) return 'Healthy range';
-    if (bmi < 30) return 'Above range';
-    return 'Well above range';
-  }
-
-  // ---- Unit toggle (BMI step) ----
-  const unitToggle = document.getElementById('unitToggle');
-  const metricFields = document.getElementById('metricFields');
-  const imperialFields = document.getElementById('imperialFields');
-  unitToggle.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-unit]');
-    if (!btn) return;
-    [...unitToggle.children].forEach(b => b.classList.toggle('active', b === btn));
-    const isMetric = btn.dataset.unit === 'metric';
-    metricFields.style.display = isMetric ? '' : 'none';
-    imperialFields.style.display = isMetric ? 'none' : '';
-    updateBmiLive();
-  });
-
-  function updateBmiLive() {
-    const isMetric = metricFields.style.display !== 'none';
-    let heightCm, weightKg;
-    if (isMetric) {
-      heightCm = parseFloat(document.getElementById('fHeightCm').value);
-      weightKg = parseFloat(document.getElementById('fWeightKg').value);
-    } else {
-      const ft = parseFloat(document.getElementById('fHeightFt').value) || 0;
-      const inch = parseFloat(document.getElementById('fHeightIn').value) || 0;
-      const lb = parseFloat(document.getElementById('fWeightLb').value);
-      heightCm = (ft * 12 + inch) * 2.54;
-      weightKg = lb * 0.453592;
-    }
-    const bmiLive = document.getElementById('bmiLive');
-    const num = document.getElementById('bmiLiveNum');
-    const tag = document.getElementById('bmiLiveTag');
-    const bmi = computeBMI(heightCm, weightKg);
-    if (bmi && isFinite(bmi) && bmi > 5 && bmi < 90) {
-      bmiLive.classList.add('ready');
-      num.innerHTML = `${bmi.toFixed(1)}<span>Your BMI</span>`;
-      tag.textContent = bmiCategory(bmi);
-    } else {
-      bmiLive.classList.remove('ready');
-      num.innerHTML = `--<span>Your BMI</span>`;
-      tag.textContent = 'Enter your details';
-    }
-  }
-  ['fHeightCm','fWeightKg','fHeightFt','fHeightIn','fWeightLb'].forEach(id => {
-    document.getElementById(id).addEventListener('input', updateBmiLive);
-  });
 
   let modalReturnFocus = null;
   function setFloatingHidden(hidden) {
@@ -2339,7 +2144,8 @@
   });
 
   function renderStep() {
-    steps.forEach((s, i) => s.classList.toggle('active', i === stepIndex));
+    allFormSteps.forEach(s => s.classList.remove('active'));
+    steps[stepIndex].classList.add('active');
     stepCount.textContent = `Question ${stepIndex + 1} of ${totalSteps}`;
     progressFill.style.width = `${((stepIndex + 1) / totalSteps) * 100}%`;
     backBtn.style.visibility = stepIndex === 0 ? 'hidden' : 'visible';
@@ -2362,105 +2168,33 @@
     const s = steps[stepIndex];
     const optList = s.querySelector('.option-list');
     if (optList) return !!answers[optList.dataset.field];
-    if (s.dataset.step === 'bmi') {
-      const age = document.getElementById('fAge').value.trim();
-      if (!age) return false;
-      const isMetric = metricFields.style.display !== 'none';
-      if (isMetric) {
-        return document.getElementById('fHeightCm').value.trim() !== '' && document.getElementById('fWeightKg').value.trim() !== '';
-      }
-      return document.getElementById('fHeightFt').value.trim() !== '' && document.getElementById('fWeightLb').value.trim() !== '';
-    }
     if (s.dataset.step === 'photo') return true; // always optional
-    const requiredInputs = s.querySelectorAll('input[required]');
-    if (requiredInputs.length) {
-      return [...requiredInputs].every(inp => {
-        if (inp.type === 'email') return inp.value.trim().includes('@');
-        if (inp.type === 'tel') return inp.value.replace(/\D/g,'').length >= 7;
-        return inp.value.toString().trim().length > 0;
-      });
-    }
     return true;
   }
 
-  nextBtn.addEventListener('click', async () => {
+  nextBtn.addEventListener('click', () => {
     if (!currentStepValid()) {
       nextBtn.style.animation = 'none';
       requestAnimationFrame(() => { nextBtn.style.animation = 'shake .35s ease'; });
       return;
     }
-    const s = steps[stepIndex];
-    s.querySelectorAll('input[data-ans]').forEach(inp => { answers[inp.dataset.ans] = inp.value.trim(); });
-
-    if (s.dataset.step === 'bmi') {
-      const isMetric = metricFields.style.display !== 'none';
-      if (!isMetric) {
-        const ft = parseFloat(document.getElementById('fHeightFt').value) || 0;
-        const inch = parseFloat(document.getElementById('fHeightIn').value) || 0;
-        const lb = parseFloat(document.getElementById('fWeightLb').value) || 0;
-        answers.heightCm = ((ft * 12 + inch) * 2.54).toFixed(1);
-        answers.weightKg = (lb * 0.453592).toFixed(1);
-      }
-      answers.bmi = computeBMI(parseFloat(answers.heightCm), parseFloat(answers.weightKg));
-      answers.bmiCategory = bmiCategory(answers.bmi);
-      // hand height to the photo-analysis module for real-world scale estimates
-      window.__febfitHeightCm = parseFloat(answers.heightCm) || null;
-    }
-
     if (stepIndex < totalSteps - 1) {
       stepIndex++;
       renderStep();
     } else {
-      // Save only after every required question has been completed.
-      // The optional photo itself is never uploaded; only locally calculated metrics may be stored.
-      nextBtn.disabled = true;
-      const originalText = nextBtn.textContent;
-      nextBtn.textContent = 'Saving…';
-      let saveResult;
-      try {
-        saveResult = await saveFormSubmission();
-      } catch (err) {
-        console.error(err);
-        saveResult = { ok: false, error: err };
-      } finally {
-        nextBtn.disabled = false;
-        nextBtn.textContent = originalText;
-      }
-
-      if (!saveResult.ok && !saveResult.pending) {
-        alert('We could not submit your form yet. Please check your connection and try again.');
-        return;
-      }
-
       formStepsWrap.style.display = 'none';
       successStep.classList.add('active');
-      document.getElementById('successName').textContent = answers.fullName || 'friend';
     }
   });
   backBtn.addEventListener('click', () => { if (stepIndex > 0) { stepIndex--; renderStep(); } });
 
-  function recommendPlan() {
-    const c = answers.commitmentLevel;
-    if (c === "I'll do whatever it takes.") return { tag: 'Transform', sub: 'Full 1:1 support for your commitment level.' };
-    if (c === 'Very committed.') return { tag: 'Signature', sub: 'Coach-matched guidance to match your drive.' };
-    if (c === "I'm just exploring.") return { tag: 'Foundations', sub: 'A gentle, self-guided place to begin.' };
-    return { tag: 'Signature', sub: 'Our most-loved balance of guidance and flexibility.' };
-  }
-
   function renderResultsSummary() {
-    const bmiVal = document.getElementById('rsBmiValue');
-    const bmiSub = document.getElementById('rsBmiSub');
-    if (answers.bmi) {
-      bmiVal.textContent = answers.bmi.toFixed(1);
-      bmiSub.textContent = `${answers.bmiCategory} · this is one data point among many — your coach looks at the full you.`;
-    } else {
-      bmiVal.textContent = '—';
-      bmiSub.textContent = "You skipped this — you can always add it later from your dashboard.";
-    }
     document.getElementById('rsGoalValue').textContent = answers.primaryGoal || 'Feeling your best';
-    const plan = recommendPlan();
-    document.getElementById('rsPlanValue').textContent = plan.tag;
-    document.getElementById('rsPlanSub').textContent = plan.sub;
+    document.getElementById('rsSetupValue').textContent = answers.trainingLocation || 'Flexible training';
+    document.getElementById('rsSetupSub').textContent = answers.sessionLength
+      ? `${answers.sessionLength} per session — realistic enough to repeat.`
+      : 'A realistic place and duration for your sessions.';
+    document.getElementById('rsCareValue').textContent = answers.movementLimitation || 'Move with care';
   }
 
   function renderBodyReport() {
@@ -2498,7 +2232,6 @@
     renderResultsSummary();
     renderBodyReport();
     unlocked.classList.add('show');
-    document.getElementById('planForName').textContent = answers.fullName || 'you';
     unlocked.scrollIntoView({ behavior: 'smooth', block: 'start' });
     unlocked.setAttribute('tabindex', '-1');
     unlocked.focus({ preventScroll: true });
