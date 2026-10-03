@@ -578,9 +578,19 @@
     transition:border-color .2s ease;
   }
   .field input:focus{border-color:var(--orchid);}
+  .details-intro{max-width:520px;}
+  .details-grid{display:grid; grid-template-columns:1fr 1fr; gap:0 14px;}
+  .details-grid .field:first-child,.details-grid .field:nth-child(2){grid-column:1 / -1;}
+  .field input[aria-invalid="true"]{border-color:#a53c4b; background:#fffafb;}
+  .field-error{display:none; margin-top:6px; font-size:11.5px; font-weight:600; color:#923846;}
+  .field.has-error .field-error{display:block;}
+  .details-privacy{display:flex; align-items:flex-start; gap:8px; margin-top:4px; padding:11px 13px; border-radius:12px; background:var(--pale-lilac-c); color:var(--soft-ink); font-size:11.5px; line-height:1.55;}
+  .details-privacy::before{content:"";width:8px;height:8px;margin-top:4px;border-radius:50%;background:var(--muted-violet);flex:0 0 auto;}
   .form-nav{display:flex; justify-content:space-between; align-items:center; margin-top:26px; gap:14px;}
   .form-nav .btn{flex:1;}
   .form-nav .back-btn{flex:0 0 auto; color:var(--ink-soft); font-size:13.5px; font-weight:600; padding:13px 8px;}
+  .intake-status{display:none;margin:10px 0 0;text-align:center;font-size:12px;font-weight:600;color:#923846;line-height:1.5;}
+  .intake-status:not(:empty){display:block;}
   .success-step{text-align:center; padding:12px 0;}
   .success-icon{
     width:70px; height:70px; border-radius:50%; background:var(--lilac-mist); display:flex; align-items:center;
@@ -630,6 +640,7 @@
   @keyframes spin{to{transform:rotate(360deg);}}
   .privacy-note{display:flex; gap:8px; align-items:flex-start; font-size:12px; color:var(--soft-ink); line-height:1.6; margin-top:18px; padding:12px 14px; border-radius:12px; background:var(--pale-lilac-c); border:1px solid var(--dusty-mauve);}
   .skip-photo{display:block; text-align:center; font-size:13px; font-weight:600; color:var(--soft-ink); margin-top:16px; text-decoration:underline;}
+  @media(max-width:560px){.details-grid{grid-template-columns:1fr}.details-grid .field{grid-column:1!important}}
 
   /* ---------- Results: BMI + Body Insights ---------- */
   .results-summary{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:0 auto 50px; max-width:1000px;}
@@ -1696,6 +1707,39 @@
       <div class="step-count" id="stepCount">Question 1</div>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
 
+      <div class="form-step" data-step="details">
+        <h3>First, tell us a little about you.</h3>
+        <p class="details-intro">These details help the FebFit team understand who the plan is being shaped for.</p>
+        <div class="details-grid">
+          <div class="field">
+            <label for="intakeName">Full name</label>
+            <input id="intakeName" name="fullName" autocomplete="name" required placeholder="Your name">
+            <span class="field-error">Please enter your name.</span>
+          </div>
+          <div class="field">
+            <label for="intakeContact">WhatsApp or contact number</label>
+            <input id="intakeContact" name="contactNumber" type="tel" inputmode="tel" autocomplete="tel" minlength="7" maxlength="18" required placeholder="Your contact number">
+            <span class="field-error">Please enter a valid contact number.</span>
+          </div>
+          <div class="field">
+            <label for="intakeAge">Age</label>
+            <input id="intakeAge" name="age" type="number" inputmode="numeric" min="16" max="90" required placeholder="Age">
+            <span class="field-error">Enter an age between 16 and 90.</span>
+          </div>
+          <div class="field">
+            <label for="intakeProfession">Profession</label>
+            <input id="intakeProfession" name="profession" autocomplete="organization-title" required placeholder="What do you do?">
+            <span class="field-error">Please enter your profession.</span>
+          </div>
+          <div class="field">
+            <label for="intakeCity">City</label>
+            <input id="intakeCity" name="city" autocomplete="address-level2" required placeholder="Your city">
+            <span class="field-error">Please enter your city.</span>
+          </div>
+        </div>
+        <p class="details-privacy">Used only for your FebFit plan check-in and follow-up.</p>
+      </div>
+
       <div class="form-step photo-step" data-step="photo">
         <p class="optional-tag">Optional — skip anytime</p>
         <h3>Want an AI body insights preview?</h3>
@@ -1912,12 +1956,13 @@
         <button class="back-btn" id="backBtn" style="visibility:hidden;">← Back</button>
         <button class="btn btn-primary" id="nextBtn">Continue</button>
       </div>
+      <p class="intake-status" id="intakeStatus" role="alert"></p>
     </div>
 
     <div class="form-step success-step" id="successStep" data-step="success">
       <div class="success-icon">✓</div>
-      <h3>Your starting insights are ready</h3>
-      <p>We’ve shaped a useful starting summary from your four answers and optional photo insights.</p>
+      <h3 id="successHeading">Your starting insights are ready</h3>
+      <p>Your details and four answers are ready, along with any optional on-device photo insights you chose to add.</p>
       <button class="btn btn-primary" id="viewPricingBtn">View My Insights →</button>
     </div>
   </div>
@@ -2075,7 +2120,10 @@
   const backBtn = document.getElementById('backBtn');
   const stepCount = document.getElementById('stepCount');
   const progressFill = document.getElementById('progressFill');
-  const stepKeys = ['2','17','18','19','photo'];
+  const intakeStatus = document.getElementById('intakeStatus');
+  const intakeEndpoint = 'https://script.google.com/macros/s/AKfycbwS_XupTwhr1nZcBN5Kl3L4559Zndvlp7MVKlcXSxlgQ1qHyImDsugCb5eoeCkv6Cyl/exec';
+  const questionKeys = ['2','17','18','19'];
+  const stepKeys = ['details',...questionKeys,'photo'];
   [...document.querySelectorAll('.form-step[data-step]')]
     .filter(step => step.dataset.step !== 'success' && !stepKeys.includes(step.dataset.step))
     .forEach(step => step.remove());
@@ -2087,6 +2135,7 @@
   let stepIndex = 0;
 
   const answers = {
+    fullName: '', contactNumber: '', age: '', profession: '', city: '',
     primaryGoal: '', trainingLocation: '', sessionLength: '', movementLimitation: ''
   };
 
@@ -2120,11 +2169,35 @@
   function renderStep() {
     allFormSteps.forEach(s => s.classList.remove('active'));
     steps[stepIndex].classList.add('active');
-    stepCount.textContent = `Question ${stepIndex + 1} of ${totalSteps}`;
+    const key = steps[stepIndex].dataset.step;
+    if (key === 'details') stepCount.textContent = 'Your details';
+    else if (key === 'photo') stepCount.textContent = 'Optional AI preview';
+    else stepCount.textContent = `Question ${questionKeys.indexOf(key) + 1} of ${questionKeys.length}`;
     progressFill.style.width = `${((stepIndex + 1) / totalSteps) * 100}%`;
     backBtn.style.visibility = stepIndex === 0 ? 'hidden' : 'visible';
-    nextBtn.textContent = stepIndex === totalSteps - 1 ? 'Prepare My Insights →' : 'Continue';
+    nextBtn.textContent = key === 'details' ? 'Start the questions →' : key === 'photo' ? 'Prepare My Insights →' : 'Continue';
   }
+
+  const detailInputs = [...document.querySelectorAll('[data-step="details"] input')];
+  function syncDetails() {
+    detailInputs.forEach(input => { answers[input.name] = input.value.trim(); });
+  }
+  function validateDetails() {
+    let firstInvalid = null;
+    detailInputs.forEach(input => {
+      const valid = input.checkValidity() && input.value.trim() !== '';
+      input.setAttribute('aria-invalid', String(!valid));
+      input.closest('.field').classList.toggle('has-error', !valid);
+      if (!valid && !firstInvalid) firstInvalid = input;
+    });
+    if (firstInvalid) { firstInvalid.focus(); return false; }
+    syncDetails();
+    return true;
+  }
+  detailInputs.forEach(input => input.addEventListener('input', () => {
+    input.setAttribute('aria-invalid', 'false');
+    input.closest('.field').classList.remove('has-error');
+  }));
 
   // option selection
   document.querySelectorAll('.option-list').forEach(list => {
@@ -2140,13 +2213,15 @@
 
   function currentStepValid() {
     const s = steps[stepIndex];
+    if (s.dataset.step === 'details') return validateDetails();
     const optList = s.querySelector('.option-list');
     if (optList) return !!answers[optList.dataset.field];
     if (s.dataset.step === 'photo') return true; // always optional
     return true;
   }
 
-  nextBtn.addEventListener('click', () => {
+  nextBtn.addEventListener('click', async () => {
+    intakeStatus.textContent = '';
     if (!currentStepValid()) {
       nextBtn.style.animation = 'none';
       requestAnimationFrame(() => { nextBtn.style.animation = 'shake .35s ease'; });
@@ -2156,8 +2231,30 @@
       stepIndex++;
       renderStep();
     } else {
-      formStepsWrap.style.display = 'none';
-      successStep.classList.add('active');
+      syncDetails();
+      window.__febfitIntake = { ...answers };
+      nextBtn.disabled = true;
+      nextBtn.textContent = 'Preparing…';
+      try {
+        await fetch(intakeEndpoint, {
+          method: 'POST', mode: 'no-cors', headers: {'Content-Type':'text/plain;charset=utf-8'},
+          body: JSON.stringify({
+            full_name: answers.fullName, contact_number: answers.contactNumber, age: answers.age,
+            profession: answers.profession, city: answers.city, primary_goal: answers.primaryGoal,
+            training_location: answers.trainingLocation, session_length: answers.sessionLength,
+            movement_limitation: answers.movementLimitation, ai_photo_analysis: !!window.__febfitBodyMetrics,
+            submitted_at: new Date().toISOString(), source: 'fitness_plan_checkin'
+          })
+        });
+        const firstName = answers.fullName.split(/\s+/)[0];
+        document.getElementById('successHeading').textContent = firstName ? `${firstName}, your starting insights are ready` : 'Your starting insights are ready';
+        formStepsWrap.style.display = 'none';
+        successStep.classList.add('active');
+      } catch (error) {
+        nextBtn.disabled = false;
+        nextBtn.textContent = 'Prepare My Insights →';
+        intakeStatus.textContent = 'We could not save your details. Check your connection and try again.';
+      }
     }
   });
   backBtn.addEventListener('click', () => { if (stepIndex > 0) { stepIndex--; renderStep(); } });
@@ -2215,6 +2312,8 @@
       formStepsWrap.style.display = '';
       successStep.classList.remove('active');
       stepIndex = 0;
+      nextBtn.disabled = false;
+      intakeStatus.textContent = '';
       renderStep();
     }, 500);
   });
