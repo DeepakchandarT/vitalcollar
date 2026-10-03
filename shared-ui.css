@@ -112,9 +112,6 @@ header .logo img{width:auto!important;height:40px!important;max-width:164px!impo
 }
 .feature-art{isolation:isolate;color:var(--charcoal-purple)}
 .feature-art::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 16% 18%,rgba(255,255,255,.82) 0 5px,transparent 6px),radial-gradient(circle at 84% 27%,rgba(255,255,255,.66) 0 4px,transparent 5px);pointer-events:none}
-.art-caption{position:absolute;left:16px;bottom:12px;font:600 13px/1 var(--ff-hand);color:var(--royal-purple);transform:rotate(-2deg)}
-.art-caption::after{content:"";display:block;width:72%;height:1px;margin-top:3px;background:currentColor;opacity:.45}
-
 .cycle-orbit{position:absolute;left:50%;top:46%;width:250px;height:112px;border:1.5px solid rgba(107,78,155,.34);border-radius:50%;transform:translate(-50%,-50%) rotate(-5deg)}
 .cycle-orbit::before,.cycle-orbit::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(107,78,155,.16);inset:13px 24px}
 .cycle-orbit::after{inset:29px 54px;background:rgba(255,255,255,.66);box-shadow:0 12px 28px -22px rgba(61,30,120,.6)}
