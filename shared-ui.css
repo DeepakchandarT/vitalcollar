@@ -118,6 +118,15 @@ header .logo img{width:auto!important;height:40px!important;max-width:164px!impo
   content:"cycle-aware rhythm";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 12px/1 var(--ff-body);letter-spacing:.08em;text-transform:uppercase;color:rgba(58,46,77,.72);white-space:nowrap
 }
 .book-page:not([data-i="0"]) .flip-photo::after{content:"personal care, shaped around you"}
+.cycle-collage{display:block!important;padding:14px 15px 42px!important;background:linear-gradient(145deg,#eee7fa,#faf7ff)!important}
+.cycle-collage::before,.cycle-collage::after{display:none!important}
+.cycle-shot{position:absolute;width:31%;height:112px;object-fit:cover;border:5px solid #fff;border-radius:8px;box-shadow:0 12px 26px -16px rgba(58,46,77,.55)}
+.cycle-shot-a{left:5%;top:18px;transform:rotate(-1.5deg);object-position:center 35%}
+.cycle-shot-b{left:34.5%;top:10px;z-index:2;transform:rotate(0);object-position:center 45%}
+.cycle-shot-c{right:5%;top:20px;transform:rotate(1.5deg);object-position:center 42%}
+.cycle-rhythm{position:absolute;left:8%;right:8%;bottom:15px;display:flex;align-items:center;justify-content:center;gap:7px;color:rgba(58,46,77,.76);font:700 9px/1 var(--ff-body);letter-spacing:.04em;text-transform:uppercase}
+.cycle-rhythm i{display:block;width:18px;height:1px;background:rgba(107,78,155,.35)}
+@media(max-width:480px){.cycle-shot{height:104px}.cycle-rhythm{left:5%;right:5%;gap:5px}.cycle-rhythm i{width:13px}}
 
 .wellness-theme .stat-strip{margin-top:42px!important;padding-block:28px!important;gap:22px!important}
 .wellness-theme .pillar-grid{gap:18px!important}
