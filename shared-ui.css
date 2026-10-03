@@ -140,9 +140,15 @@ header .logo img{width:auto!important;height:40px!important;max-width:164px!impo
 .contact-status:not(:empty){display:block}
 .contact-status.is-error{color:#9a2d35}
 
-.pricing,.modal-overlay{display:none!important}
+.plans,.download-row{display:none!important}
 .avatar-marquee{display:none!important}
-.fitness-theme .testimonials{display:none!important}
+.fitness-theme .testimonials{display:block!important}
+.fitness-theme .pricing{display:block!important}
+.fitness-theme .testimonials .section-head{margin-bottom:30px!important}
+.fitness-theme .review-disclosure{max-width:660px;margin:16px auto 0;font-size:12px;line-height:1.65;color:var(--feb-muted);text-align:center}
+.fitness-theme .pricing-unlocked .section-head p{max-width:650px}
+.fitness-theme .pricing-unlocked.show{display:block}
+.fitness-theme .pricing-unlocked .body-report{margin-bottom:0}
 
 .whatsapp-fab{
   right:18px!important;
