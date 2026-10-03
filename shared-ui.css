@@ -80,7 +80,10 @@ header .logo img{width:auto!important;height:40px!important;max-width:164px!impo
 .hero{min-height:min(790px,100dvh);padding-top:clamp(118px,12vw,154px)!important;padding-bottom:clamp(74px,8vw,108px)!important}
 .hero .lead{font-size:clamp(16px,1.6vw,18px)!important;line-height:1.7!important}
 .scrap-h1{font-family:var(--ff-display)!important;letter-spacing:-.035em!important;line-height:.98!important;transform:none!important}
-.scrap-photo,.poster-card,.polaroid{border-radius:var(--feb-radius)!important;box-shadow:var(--feb-shadow)!important;overflow:hidden}
+.scrap-photo,.poster-card,.polaroid{border-radius:var(--feb-radius)!important;box-shadow:var(--feb-shadow)!important}
+.scrap-photo,.polaroid{overflow:hidden}
+.poster-card{overflow:visible!important}
+.poster-card>img{border-radius:calc(var(--feb-radius) - 4px)}
 .scrap-photo.rear{transform:rotate(-1.5deg)!important}
 .scrap-photo.front{transform:rotate(1.5deg)!important}
 .poster-card,.polaroid{transform:rotate(-1.5deg)!important}
@@ -154,7 +157,7 @@ header .logo img{width:auto!important;height:40px!important;max-width:164px!impo
 .fitness-theme .testimonials{display:block!important}
 .fitness-theme .pricing{display:block!important}
 .fitness-theme .testimonials .section-head{margin-bottom:30px!important}
-.fitness-theme .review-disclosure{max-width:660px;margin:16px auto 0;font-size:12px;line-height:1.65;color:var(--feb-muted);text-align:center}
+.fitness-theme .carousel-track-wrap{padding-top:18px;margin-top:-18px}
 .fitness-theme .pricing-unlocked .section-head p{max-width:650px}
 .fitness-theme .pricing-unlocked.show{display:block}
 .fitness-theme .pricing-unlocked .body-report{margin-bottom:0}
