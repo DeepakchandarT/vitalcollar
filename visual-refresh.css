@@ -1,0 +1,85 @@
+/* Shared visual refinements: retain the scrapbook layout and existing interactions. */
+:root {
+  --ff-display:'DM Sans',sans-serif;
+  --ff-body:'DM Sans',sans-serif;
+  --ff-hand:'DM Sans',sans-serif;
+  --ff-mono:'DM Sans',sans-serif;
+  --soft-lavender:#e9dff4;
+  --light-purple:#dfd0ee;
+  --deep-purple-c:#583580;
+  --muted-violet:#8056ad;
+  --pale-lilac-c:#f7f3fb;
+  --dusty-mauve:#c7b0df;
+  --charcoal-purple:#2c1d3e;
+  --purple-deep:#3f235f;
+  --purple:#603a91;
+  --purple-bg:#e4d5f2;
+  --purple-light:#bfa3de;
+  --teal-deep:#124b42;
+  --teal:#167766;
+  --teal-light:#98d0c2;
+  --teal-bg:#d5eae3;
+}
+body {font-family:var(--ff-body);}
+body[data-site="fitness"] {--soft-ink:#564563;--shadow-color:rgba(55,29,83,.19);}
+body[data-site="wellness"] {
+  --linen:#e3f0e9;--parchment:#cfe5da;--moss:#167563;
+  --deep-moss:#124b42;--sage:#378977;--misty-sage:#a6d2c3;
+  --dawn-lilac:#258976;--pale-lilac:#d4e9df;--ink:#153c34;
+  --soft-ink:#365c51;--line:#b7d4c6;
+}
+h1,h2,h3,h4 {font-family:var(--ff-display);font-style:normal;font-weight:700;letter-spacing:-.035em;}
+h1,h2,h3 {line-height:1.18;}
+button,input,select,textarea {font-family:var(--ff-body);}
+a:focus-visible,button:focus-visible,[role="button"]:focus-visible {outline:3px solid #a65b1a;outline-offset:5px;}
+input:focus-visible,select:focus-visible,textarea:focus-visible {outline:2px solid var(--royal-purple,#167563);outline-offset:3px;}
+.scrap-h1 {font-size:clamp(42px,5.7vw,76px);line-height:1.06;font-weight:700;letter-spacing:-.05em;transform:none;}
+.scrap-note p {font-size:19px;line-height:1.5;font-weight:500;}
+.scrap-note-caption,.scrap-photo-tag {font-size:14px;font-weight:600;}
+.scrap-photo img {object-position:center;}
+body[data-site="fitness"] .scrap-photo.front img {object-position:54% center;}
+body[data-site="fitness"] .scrap-photo.rear img {object-position:48% center;}
+body[data-site="wellness"] .scrap-h1 {font-style:normal;font-weight:700!important;line-height:1.12!important;}
+.credentials {border-radius:18px;border:1px solid var(--dusty-mauve);box-shadow:0 12px 30px -22px rgba(55,29,83,.4);}
+.credentials>strong {font-size:18px;color:var(--royal-purple);}
+.credential-list {margin:12px 0 0;padding:0;list-style:none;}
+.credential-list li {position:relative;padding:12px 0 12px 20px;font-size:15px;line-height:1.6;font-weight:400;font-family:var(--ff-body);}
+.credential-list li+li {border-top:1px solid var(--light-purple);}
+.credential-list li:before {content:'';position:absolute;left:0;top:21px;width:6px;height:6px;border-radius:50%;background:var(--royal-purple);}
+.credential-list strong {font-weight:700;}
+.credentials .doodle-heart {width:22px;height:22px;}
+.modal h3 {font-size:clamp(24px,4.5vw,32px);line-height:1.2;}
+.option {color:var(--ink);font-size:16px;line-height:1.5;text-align:left;min-height:54px;}
+.option.selected {border-color:var(--royal-purple);background:var(--soft-lavender);}
+.field input,.field select {font-size:16px;}
+body[data-site="entry"] .fork-title {font-family:var(--ff-display);font-size:clamp(24px,5vw,35px);font-weight:700;letter-spacing:-.04em;}
+body[data-site="entry"] .fork-title em {font-style:normal;}
+body[data-site="entry"] .fork-hint {color:#64516f;}
+body[data-site="entry"] .polaroid-icon {width:100%;height:100%;object-fit:cover;}
+body[data-site="entry"] .side-brand {font-family:var(--ff-body);font-weight:700;}
+body[data-site="entry"] .side-tags {color:#564b61;line-height:1.5;}
+@media(max-width:600px) {
+  .wrap {padding-left:22px;padding-right:22px;}
+  body[data-site="fitness"] .scrap-h1 {font-size:clamp(40px,10.2vw,56px);}
+  .credentials {padding:22px 20px;}
+  .credential-list li {font-size:14px;}
+  .scrap-note p {font-size:16px;}
+  .modal {max-height:calc(100dvh - 28px);overflow-y:auto;overscroll-behavior:contain;}
+  body[data-site="entry"] .side-tags {font-size:10px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto!important;}
+  .reveal {opacity:1!important;transform:none!important;}
+}
+.consent-row{display:block;margin:18px 0;font:14px/1.6 var(--ff-body);color:var(--ink)}
+.consent-row input{width:18px;height:18px;vertical-align:middle;margin-right:8px;accent-color:#583580}
+.consent-row a{text-decoration:underline;text-underline-offset:3px}
+.next-steps{max-width:1000px;margin:24px auto 40px;padding:28px;border-radius:20px;background:#e9dff4;color:#2c1d3e}
+.next-steps ul{list-style:disc;padding-left:22px;margin:18px 0;line-height:1.7}
+.next-steps li+li{margin-top:10px}.next-steps button{padding:12px 18px;border-radius:10px;background:#583580;color:#fff}
+.privacy-link{display:block;text-align:center;padding:16px;font:13px/1.5 var(--ff-body);color:#583580;background:#f7f3fb}
+body[data-site="entry"]>.privacy-link{position:fixed;bottom:0;left:0;right:0;z-index:100;padding:6px}
+#deliveryStatus:not(:empty){padding:14px;background:#e9dff4;border-radius:12px;margin:10px 0;font-size:14px;line-height:1.5}
+@media print{header,footer,.whatsapp-fab,.febfit-postcard-back,.modal-overlay,.plans,.next-steps button{display:none!important}.reveal{opacity:1!important;transform:none!important}body{background:white!important}.next-steps,.body-report,.results-summary{break-inside:avoid}}
+
+.credentials .credential-list{font-family:var(--ff-body)!important}.credentials .credential-list li{font-family:var(--ff-body)!important}

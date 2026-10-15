@@ -7,7 +7,7 @@
 <title>Febfitwellness — Strength That Feels Like Softness</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;650;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     /* ---- Purple & White Wellness App Palette ---- */
@@ -1168,8 +1168,9 @@
 </style>
 <link rel="stylesheet" href="shared-ui.css">
 <link rel="stylesheet" href="mood.css">
+<link rel="stylesheet" href="visual-refresh.css">
 </head>
-<body class="no-js fitness-theme">
+<body class="no-js fitness-theme" data-site="fitness">
 <script>
   document.body.classList.remove('no-js');
   window.addEventListener('error', function(){ document.body.classList.add('js-error'); });
@@ -1236,11 +1237,11 @@
 
         <div class="scrap-photo rear">
           <span class="scrap-photo-tag">move</span>
-          <img src="fitness-editorial.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman practising a controlled strength and mobility exercise">
+          <img src="assets/indian-fitness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman practising a controlled strength and mobility exercise">
         </div>
         <div class="scrap-photo front">
           <span class="scrap-photo-tag">restore</span>
-          <img src="fitness-editorial.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="Women-centred movement practice in a warm wellness studio">
+          <img src="assets/indian-fitness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="Women-centred movement practice in a warm wellness studio">
         </div>
         <svg class="doodle doodle-star-2" viewBox="0 0 20 20" fill="none" stroke="var(--royal-purple)"><path d="M10 1l2.2 6.5L18 9l-6 1.8L10 17l-1.8-6.2L2 9l6-1.5z"/></svg>
 
@@ -1248,7 +1249,7 @@
           <svg class="doodle-heart" viewBox="0 0 20 18" fill="none" stroke-width="1.6"><path d="M10 17S1 11 1 5.6C1 2.4 3.4 1 5.6 1 7.6 1 9 2.3 10 4.2 11 2.3 12.4 1 14.4 1 16.6 1 19 2.4 19 5.6 19 11 10 17 10 17z"/></svg>
           <p id="floatReviewText">Build strength with movement, support and a plan that respects your body.</p>
           <div class="scrap-note-who">
-            <img src="fitness-editorial.webp" width="1280" height="853" decoding="async" alt="">
+            <img src="assets/indian-fitness.webp" width="1280" height="853" decoding="async" alt="">
             <span id="floatReviewName">A supportive plan, shaped around you</span>
           </div>
         </div>
@@ -1316,10 +1317,10 @@
         <p style="font-weight:600; margin-bottom:16px;">Physiotherapist · Strength &amp; Conditioning Professional · Sports Rehabilitation Specialist</p>
         <p>Founder of FebFit Wellness Hub, bringing physiotherapy, fitness, sports rehabilitation, nutrition and holistic wellness together.</p>
         <p style="margin-bottom:18px;">Currently pursuing a Master’s in Sports Injury Rehabilitation in London.</p>
-        <div class="poster-note" style="--pn-rot:2deg; max-width:440px; margin:24px 0;">
+        <div class="poster-note credentials" style="--pn-rot:0deg; max-width:500px; margin:24px 0;">
           <svg class="doodle-heart" viewBox="0 0 20 18" fill="none" stroke-width="1.6"><path d="M10 17S1 11 1 5.6C1 2.4 3.4 1 5.6 1 7.6 1 9 2.3 10 4.2 11 2.3 12.4 1 14.4 1 16.6 1 19 2.4 19 5.6 19 11 10 17 10 17z"/></svg>
           <strong style="display:block; margin-bottom:7px;">Qualifications</strong>
-          <p style="margin:0; font-size:17px; line-height:1.65;">🎓 Bachelor of Physiotherapy (BPT)<br>🏋️ NASM – Strength &amp; Conditioning: Performance Enhancement<br>🥗 NASM – Plant-Based Nutrition</p>
+          <ul class="credential-list"><li>Bachelor of Physiotherapy <strong>(BPT)</strong></li><li><strong>NASM</strong> · Strength &amp; Conditioning: Performance Enhancement</li><li><strong>NASM</strong> · Plant-Based Nutrition</li></ul>
         </div>
         <div class="signature" style="font-size:18px; max-width:500px; line-height:1.5;">“Your body is not something you need to fight. It’s something you need to understand, train and take care of.”</div>
       </div>
@@ -1589,15 +1590,16 @@
         </div>
       </div>
 
+<section class="next-steps"><h3>Your next conversation with your coach</h3><ul id="coachingNotes"></ul><button type="button" onclick="window.print()">Print / save summary</button></section>
       <div class="body-report reveal" id="bodyReport">
         <div class="br-head">
           <span class="eyebrow" style="justify-content:center;">AI body insights (beta)</span>
-          <h3>Your posture & proportion snapshot</h3>
-          <p>Generated on your device from your photo using pose analysis — measuring alignment, symmetry and proportion, not judging your body. Use it as a gentle baseline for your coach to work from.</p>
+          <h3>Your photo snapshot</h3>
+          <p>Generated in your browser using AI landmark detection. These are 2D image observations, not a posture grade or a body measurement.</p>
         </div>
         <div class="metrics-grid" id="metricsGrid"></div>
         <div class="focus-areas" id="focusAreas"></div>
-        <p class="br-disclaimer">This is a wellness estimate generated from a single photo, not a medical or diagnostic measurement. Your coach or physiotherapist should confirm anything that needs clinical attention.</p>
+        <p class="br-disclaimer">A single photo cannot measure body fat, waist circumference, physical balance or diagnose an injury. The visibility figure reflects model landmark visibility, not clinical accuracy. A qualified professional can assess concerns in context.</p>
       </div>
 
       <div class="plans">
@@ -1696,7 +1698,7 @@
       <span>Made with care, for women everywhere.</span>
     </div>
   </div>
-</footer>
+<a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">Privacy &amp; your data</a></footer>
 
 <!-- ============ FORM MODAL ============ -->
 <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
@@ -1723,8 +1725,8 @@
           </div>
           <div class="field">
             <label for="intakeAge">Age</label>
-            <input id="intakeAge" name="age" type="number" inputmode="numeric" min="16" max="90" required placeholder="Age">
-            <span class="field-error">Enter an age between 16 and 90.</span>
+            <input id="intakeAge" name="age" type="number" inputmode="numeric" min="18" max="90" required placeholder="Age">
+            <span class="field-error">Enter an age between 18 and 90.</span>
           </div>
           <div class="field">
             <label for="intakeProfession">Profession</label>
@@ -1737,14 +1739,14 @@
             <span class="field-error">Please enter your city.</span>
           </div>
         </div>
-        <p class="details-privacy">Used only for your FebFit plan check-in and follow-up.</p>
+        <label class="consent-row"><input type="checkbox" id="enquiryConsent"> I agree to FebFit using my contact details and answers to respond to this enquiry and discuss coaching. <a href="privacy.html" target="_blank" rel="noopener">Privacy policy</a>.</label>
       </div>
 
       <div class="form-step photo-step" data-step="photo">
         <p class="optional-tag">Optional — skip anytime</p>
-        <h3>Want an AI body insights preview?</h3>
-        <p>Upload a full-length photo (front-facing, standing, fitted clothing works best) and we'll analyse posture, symmetry and proportions right in your browser — about 30 data points your coach can use to personalise your plan further.</p>
-        <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Choose a full-length photo for private on-device analysis">
+        <h3>Optional AI photo snapshot</h3>
+        <p>For adults 18+. Choose a clear, front-facing standing photo with your head and feet visible. Keep the camera level, use even lighting and comfortable clothing. This optional tool describes a few image angles; it does not assess your health.</p>
+        <div class="upload-zone" id="uploadZone">
           <div class="uz-icon"></div>
           <strong>Tap to upload a photo</strong>
           <span>or drag & drop · JPG or PNG · nothing leaves your device</span>
@@ -1755,10 +1757,11 @@
           <div class="up-info"><strong id="upFileName">photo.jpg</strong><span id="upStatus">Ready</span></div>
           <button type="button" class="up-remove" id="upRemove">Remove</button>
         </div>
+        <label class="consent-row"><input type="checkbox" id="sharePhotoMetrics"> Include my calculated photo snapshot with my coaching enquiry (optional; never includes my photo).</label>
         <div class="analysing" id="analysingRow"><div class="spin"></div><span>Analysing posture & proportions on your device…</span></div>
         <div class="privacy-note">
           <span></span>
-          <span>Your photo is processed locally using on-device pose analysis and is never uploaded to our servers or seen by our team. You can remove it anytime — skipping this step won't affect your plan.</span>
+          <span>Your photo is processed in this browser and is not included in the enquiry. The model downloads from external providers. Calculated results stay here unless you choose to share them below. Remove the photo or reload to clear the preview.</span>
         </div>
       </div>
 
@@ -1925,7 +1928,6 @@
       <div class="form-step" data-step="18">
         <h3>How much time can you realistically give each session?</h3>
         <div class="option-list" data-field="sessionLength">
-          <button class="option" data-value="15–20 minutes">15–20 minutes<span class="check"></span></button>
           <button class="option" data-value="30 minutes">30 minutes<span class="check"></span></button>
           <button class="option" data-value="45 minutes">45 minutes<span class="check"></span></button>
           <button class="option" data-value="60 minutes or more">60 minutes or more<span class="check"></span></button>
@@ -1959,7 +1961,7 @@
       <p class="intake-status" id="intakeStatus" role="alert"></p>
     </div>
 
-    <div class="form-step success-step" id="successStep" data-step="success">
+    <div class="form-step success-step" id="successStep" data-step="success"><p id="deliveryStatus" role="status"></p>
       <div class="success-icon">✓</div>
       <h3 id="successHeading">Your starting insights are ready</h3>
       <p>Your details and four answers are ready, along with any optional on-device photo insights you chose to add.</p>
@@ -2178,11 +2180,12 @@
     nextBtn.textContent = key === 'details' ? 'Start the questions →' : key === 'photo' ? 'Prepare My Insights →' : 'Continue';
   }
 
-  const detailInputs = [...document.querySelectorAll('[data-step="details"] input')];
+  const detailInputs = [...document.querySelectorAll('[data-step="details"] input[name]')];
   function syncDetails() {
     detailInputs.forEach(input => { answers[input.name] = input.value.trim(); });
   }
   function validateDetails() {
+    if(!document.getElementById("enquiryConsent").checked){intakeStatus.textContent="Please read the privacy notice and agree before submitting an enquiry.";document.getElementById("enquiryConsent").focus();return false;}
     let firstInvalid = null;
     detailInputs.forEach(input => {
       const valid = input.checkValidity() && input.value.trim() !== '';
@@ -2242,10 +2245,13 @@
             full_name: answers.fullName, contact_number: answers.contactNumber, age: answers.age,
             profession: answers.profession, city: answers.city, primary_goal: answers.primaryGoal,
             training_location: answers.trainingLocation, session_length: answers.sessionLength,
-            movement_limitation: answers.movementLimitation, ai_photo_analysis: !!window.__febfitBodyMetrics,
+            movement_limitation: answers.movementLimitation, enquiry_consent: true, privacy_notice_version: "2026-10-16",
+            photo_metrics_consent: document.getElementById("sharePhotoMetrics").checked,
+            body_metrics: document.getElementById("sharePhotoMetrics").checked ? (window.__febfitBodyMetrics || null) : null,
             submitted_at: new Date().toISOString(), source: 'fitness_plan_checkin'
           })
         });
+        document.getElementById('deliveryStatus').textContent='Enquiry request sent; receipt cannot be confirmed here. Contact us on WhatsApp if you need confirmation.';
         const firstName = answers.fullName.split(/\s+/)[0];
         document.getElementById('successHeading').textContent = firstName ? `${firstName}, your starting insights are ready` : 'Your starting insights are ready';
         formStepsWrap.style.display = 'none';
@@ -2260,6 +2266,11 @@
   backBtn.addEventListener('click', () => { if (stepIndex > 0) { stepIndex--; renderStep(); } });
 
   function renderResultsSummary() {
+    const list=document.getElementById('coachingNotes');list.replaceChildren();
+    const notes=['Your goal: '+answers.primaryGoal+'. Agree on a useful progress measure with your coach.',
+      'Plan around '+answers.sessionLength+' in your preferred setting: '+answers.trainingLocation+'. Discuss which days are realistic.',
+      'Movement concerns: '+answers.movementLimitation+'. Ask your coach what needs an individual assessment before choosing exercises.'];
+    notes.forEach(text=>{const li=document.createElement('li');li.textContent=text;list.appendChild(li);});
     document.getElementById('rsGoalValue').textContent = answers.primaryGoal || 'Feeling your best';
     document.getElementById('rsSetupValue').textContent = answers.trainingLocation || 'Flexible training';
     document.getElementById('rsSetupSub').textContent = answers.sessionLength
@@ -2328,9 +2339,9 @@
 </script>
 
 <!-- ============ AI BODY INSIGHTS (on-device MediaPipe Pose) ============ -->
-<script>
-(async function(){
-  const { PoseLandmarker, FilesetResolver } = await import("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/+esm");
+<script src="insights.js"></script>
+<script type="module">
+  import { PoseLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/+esm";
 
   const uploadZone = document.getElementById('uploadZone');
   const photoInput = document.getElementById('photoInput');
@@ -2342,6 +2353,8 @@
   const upRemove = document.getElementById('upRemove');
   const analysingRow = document.getElementById('analysingRow');
 
+  let scanVersion = 0;
+  let previewUrl = null;
   let landmarker = null;
   let landmarkerLoading = null;
 
@@ -2358,17 +2371,11 @@
       runningMode: "IMAGE",
       numPoses: 1
     })).then(l => { landmarker = l; return l; })
-      .catch(err => { console.warn('Pose model failed to load', err); return null; });
+      .catch(err => { landmarkerLoading = null; console.warn('Pose model failed to load', err); return null; });
     return landmarkerLoading;
   }
 
   uploadZone.addEventListener('click', () => photoInput.click());
-  uploadZone.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      photoInput.click();
-    }
-  });
   uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
   uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
   uploadZone.addEventListener('drop', e => {
@@ -2377,6 +2384,13 @@
   });
   photoInput.addEventListener('change', () => { if (photoInput.files[0]) handleFile(photoInput.files[0]); });
   upRemove.addEventListener('click', () => {
+    scanVersion++;
+    if(previewUrl) URL.revokeObjectURL(previewUrl);
+    previewUrl=null; upThumbImg.removeAttribute('src');
+    upThumbCanvas.getContext('2d').clearRect(0,0,64,64);
+    analysingRow.classList.remove('show');
+    document.getElementById('sharePhotoMetrics').checked=false;
+    document.getElementById('bodyReport').classList.remove('show');
     uploadPreview.classList.remove('show');
     uploadZone.style.display = '';
     photoInput.value = '';
@@ -2384,8 +2398,14 @@
   });
 
   function handleFile(file) {
-    if (!file.type.startsWith('image/')) return;
+    if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024){alert('Choose a JPG, PNG or WebP image under 10 MB.');return;}
+    const scan=++scanVersion;
+    window.__febfitBodyMetrics=null;
+    document.getElementById('bodyReport').classList.remove('show');
+    upThumbCanvas.getContext('2d').clearRect(0,0,64,64);
+    if(previewUrl) URL.revokeObjectURL(previewUrl);
     const url = URL.createObjectURL(file);
+    previewUrl=url;
     upThumbImg.src = url;
     upFileName.textContent = file.name.length > 22 ? file.name.slice(0, 20) + '…' : file.name;
     upStatus.textContent = 'Analysing…';
@@ -2397,6 +2417,7 @@
     img.onload = async () => {
       try {
         const lm = await getLandmarker();
+        if(scan!==scanVersion)return;
         if (!lm) throw new Error('model unavailable');
         const result = lm.detect(img);
         if (!result.landmarks || !result.landmarks.length) {
@@ -2408,15 +2429,17 @@
         const metrics = computeBodyMetrics(result.landmarks[0], img.naturalWidth, img.naturalHeight, window.__febfitHeightCm);
         window.__febfitBodyMetrics = metrics;
         drawSkeleton(result.landmarks[0], img.naturalWidth, img.naturalHeight);
-        upStatus.textContent = `Analysis complete · ${metrics.pointCount} data points captured`;
+        upStatus.textContent = `Analysis complete · ${metrics.pointCount} image observations ready`;
       } catch (err) {
         console.warn(err);
-        upStatus.textContent = 'Analysis unavailable right now — you can still continue without it.';
+        if(scan!==scanVersion)return;
+        upStatus.textContent = err.message === 'model unavailable' ? 'Analysis unavailable — continue without a photo or try again.' : err.message;
         window.__febfitBodyMetrics = null;
       } finally {
-        analysingRow.classList.remove('show');
+        if(scan===scanVersion) analysingRow.classList.remove('show');
       }
     };
+    img.onerror=()=>{if(scan===scanVersion){upStatus.textContent='This image could not be read. Try a different JPG or PNG.';analysingRow.classList.remove('show');}};
     img.src = url;
   }
 
@@ -2440,117 +2463,14 @@
     });
   }
 
-  // ---- Compute ~30 posture / symmetry / proportion metrics from pose landmarks ----
-  function computeBodyMetrics(lm, imgW, imgH, heightCm) {
-    const P = i => ({ x: lm[i].x * imgW, y: lm[i].y * imgH, v: lm[i].visibility ?? 1 });
-    const mid = (a, b) => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 });
-    const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
-    const angleFromVertical = (a, b) => Math.abs(Math.atan2(b.x - a.x, b.y - a.y) * 180 / Math.PI);
+  const computeBodyMetrics = window.FebfitInsights.computeBodyMetrics;
 
-    const nose = P(0), lEar = P(7), rEar = P(8);
-    const lSh = P(11), rSh = P(12), lEl = P(13), rEl = P(14), lWr = P(15), rWr = P(16);
-    const lHip = P(23), rHip = P(24), lKnee = P(25), rKnee = P(26), lAnk = P(27), rAnk = P(28);
-
-    const shMid = mid(lSh, rSh), hipMid = mid(lHip, rHip), ankMid = mid(lAnk, rAnk);
-    const shoulderWidth = dist(lSh, rSh);
-    const hipWidth = dist(lHip, rHip);
-    const estWaistWidth = hipWidth * 0.78;
-    const torsoLen = dist(shMid, hipMid);
-    const legLen = dist(hipMid, ankMid);
-    const leftArmLen = dist(lSh, lEl) + dist(lEl, lWr);
-    const rightArmLen = dist(rSh, rEl) + dist(rEl, rWr);
-    const leftLegLen = dist(lHip, lKnee) + dist(lKnee, lAnk);
-    const rightLegLen = dist(rHip, rKnee) + dist(rKnee, rAnk);
-    const bodySpanPx = dist(nose, ankMid) * 1.14; // approx top-of-head to floor
-
-    // real-world scale, if height was supplied
-    const scale = heightCm ? heightCm / bodySpanPx : null;
-    const cm = px => scale ? (px * scale).toFixed(1) + ' cm' : px.toFixed(0) + ' px';
-
-    const shoulderTilt = Math.abs(Math.atan2(rSh.y - lSh.y, rSh.x - lSh.x) * 180 / Math.PI);
-    const hipTilt = Math.abs(Math.atan2(rHip.y - lHip.y, rHip.x - lHip.x) * 180 / Math.PI);
-    const spineLean = angleFromVertical(shMid, hipMid);
-    const headForwardOffset = Math.abs(nose.x - shMid.x) / shoulderWidth * 100;
-    const neckTiltL = angleFromVertical(lEar, lSh), neckTiltR = angleFromVertical(rEar, rSh);
-    const shoulderHipAlign = Math.abs(shMid.x - hipMid.x) / shoulderWidth * 100;
-
-    const armSymmetry = 100 - Math.min(100, Math.abs(leftArmLen - rightArmLen) / ((leftArmLen + rightArmLen) / 2) * 100);
-    const legSymmetry = 100 - Math.min(100, Math.abs(leftLegLen - rightLegLen) / ((leftLegLen + rightLegLen) / 2) * 100);
-    const shoulderLevelSymmetry = 100 - Math.min(100, Math.abs(lSh.y - rSh.y) / shoulderWidth * 100);
-    const hipLevelSymmetry = 100 - Math.min(100, Math.abs(lHip.y - rHip.y) / hipWidth * 100);
-
-    const postureScore = Math.max(0, 100 - (shoulderTilt * 2 + spineLean * 2 + headForwardOffset * 0.8));
-    const symmetryScore = (armSymmetry + legSymmetry + shoulderLevelSymmetry + hipLevelSymmetry) / 4;
-
-    const stanceWidth = dist(lAnk, rAnk);
-    const stanceRatio = (stanceWidth / hipWidth) * 100;
-    const balanceOffset = Math.abs(ankMid.x - hipMid.x) / hipWidth * 100;
-
-    const whRatio = estWaistWidth / hipWidth;
-    const shHipRatio = shoulderWidth / hipWidth;
-    const legTorsoRatio = legLen / torsoLen;
-
-    const visibilities = [nose,lSh,rSh,lHip,rHip,lKnee,rKnee,lAnk,rAnk].map(p => p.v);
-    const photoQuality = (visibilities.reduce((a,b) => a+b, 0) / visibilities.length) * 100;
-
-    const focusAreas = [];
-    if (postureScore < 75) focusAreas.push('Posture & alignment');
-    if (symmetryScore < 88) focusAreas.push('Left-right balance work');
-    if (legTorsoRatio < 1.7) focusAreas.push('Lower-body mobility');
-    if (balanceOffset > 8) focusAreas.push('Core stability & balance');
-    if (!focusAreas.length) focusAreas.push('Great foundation — maintenance focus');
-
-    const categories = [
-      { name: 'Proportions', items: [
-        { label: 'Shoulder width', val: cm(shoulderWidth) },
-        { label: 'Hip width', val: cm(hipWidth) },
-        { label: 'Estimated waist width', val: cm(estWaistWidth) },
-        { label: 'Torso length', val: cm(torsoLen) },
-        { label: 'Leg length', val: cm(legLen) },
-        { label: 'Shoulder-to-hip ratio', val: shHipRatio.toFixed(2) },
-        { label: 'Waist-to-hip ratio (est.)', val: whRatio.toFixed(2) },
-        { label: 'Leg-to-torso ratio', val: legTorsoRatio.toFixed(2) },
-      ]},
-      { name: 'Symmetry', items: [
-        { label: 'Arm length symmetry', val: armSymmetry.toFixed(0) + '%' },
-        { label: 'Leg length symmetry', val: legSymmetry.toFixed(0) + '%' },
-        { label: 'Shoulder level symmetry', val: shoulderLevelSymmetry.toFixed(0) + '%' },
-        { label: 'Hip level symmetry', val: hipLevelSymmetry.toFixed(0) + '%' },
-        { label: 'Overall symmetry score', val: symmetryScore.toFixed(0) + '/100' },
-      ]},
-      { name: 'Posture & alignment', items: [
-        { label: 'Shoulder tilt', val: shoulderTilt.toFixed(1) + '°' },
-        { label: 'Hip tilt', val: hipTilt.toFixed(1) + '°' },
-        { label: 'Spine lean from vertical', val: spineLean.toFixed(1) + '°' },
-        { label: 'Head-forward offset', val: headForwardOffset.toFixed(1) + '%' },
-        { label: 'Left neck angle', val: neckTiltL.toFixed(1) + '°' },
-        { label: 'Right neck angle', val: neckTiltR.toFixed(1) + '°' },
-        { label: 'Shoulder-hip alignment', val: shoulderHipAlign.toFixed(1) + '%' },
-        { label: 'Overall posture score', val: postureScore.toFixed(0) + '/100' },
-      ]},
-      { name: 'Balance & stance', items: [
-        { label: 'Stance width vs hips', val: stanceRatio.toFixed(0) + '%' },
-        { label: 'Weight distribution offset', val: balanceOffset.toFixed(1) + '%' },
-        { label: 'Left arm length', val: cm(leftArmLen) },
-        { label: 'Right arm length', val: cm(rightArmLen) },
-        { label: 'Left leg length', val: cm(leftLegLen) },
-        { label: 'Right leg length', val: cm(rightLegLen) },
-      ]},
-      { name: 'Photo & scan quality', items: [
-        { label: 'Landmark visibility score', val: photoQuality.toFixed(0) + '%' },
-        { label: 'Body scale reference', val: scale ? 'Calibrated to your height' : 'Add height for cm estimates' },
-      ]},
-    ];
-
-    const pointCount = categories.reduce((n, c) => n + c.items.length, 0);
-    return { categories, focusAreas, pointCount };
-  }
-})();
 </script>
 <a href="https://wa.me/919025863098" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.986.579 3.837 1.578 5.396L2 22l4.75-1.545A9.943 9.943 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.2a8.174 8.174 0 0 1-4.418-1.294l-.317-.19-3.16 1.028 1.043-3.086-.207-.318A8.173 8.173 0 0 1 3.8 12c0-4.529 3.673-8.2 8.201-8.2 4.529 0 8.2 3.671 8.2 8.2 0 4.528-3.671 8.2-8.2 8.2z"/></svg>
 </a>
 
+<p class="privacy-link">Mood check-ins stay in this browser. <a href="privacy.html#choices" target="_blank" rel="noopener">Manage your data</a>.</p>
 <script src="mood.js"></script>
 <script src="shared-ui.js"></script>
 </body>
