@@ -1194,6 +1194,7 @@ header .logo,.footer-brand .logo{gap:0}
 <link rel="stylesheet" href="shared-ui.css">
 <link rel="stylesheet" href="mood.css">
 <link rel="stylesheet" href="visual-refresh.css">
+<link rel="stylesheet" href="wellness-refine.css">
 </head>
 <body class="no-js wellness-theme" data-site="wellness">
 <!-- FebFit postcard back control: intentionally bottom-left only -->
@@ -1252,12 +1253,12 @@ header .logo,.footer-brand .logo{gap:0}
         <div class="scrap-doodle one">✦</div>
 
         <div class="scrap-photo rear">
-          <img src="assets/indian-wellness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman taking a quiet mindful pause in a warm room">
+          <img src="indian-wellness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman taking a quiet mindful pause in a warm room">
           <span class="cap">make space for stillness</span>
         </div>
 
         <div class="scrap-photo front">
-          <img src="assets/indian-wellness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="Gentle breathing and mobility practice in calm morning light">
+          <img src="wellness-editorial.webp" width="1280" height="853" decoding="async" alt="Gentle breathing and mobility practice in calm morning light">
           <span class="cap">move gently, feel deeply</span>
         </div>
       </div>
@@ -1457,13 +1458,13 @@ header .logo,.footer-brand .logo{gap:0}
 </section>
 
 <!-- ============ CTA BAND ============ -->
-<section class="cta-band">
+<section class="cta-band" id="why-febfit">
   <div class="wrap">
     <span class="sticker">✨ Why FebFit?</span>
     <h2 style="margin-top:22px;">Science meets wellness.</h2>
     <p>At FebFit, we bring together Physiotherapy × Fitness × Strength &amp; Conditioning × Nutrition × Mindfulness — because true wellness isn't just one thing. It's a lifestyle.</p>
     <p style="font-family:var(--ff-display); font-style:italic; font-size:20px; color:var(--deep-moss); margin-bottom:30px;">Move. Strengthen. Nourish. Breathe. Thrive.</p>
-    <a href="#pricing" class="btn btn-primary">This is FebFit Wellness Hub</a>
+    <a href="#contact" class="btn btn-primary">Talk to the FebFit team</a>
   </div>
 </section>
 
@@ -1497,7 +1498,7 @@ header .logo,.footer-brand .logo{gap:0}
       </div>
       <div class="contact-field">
         <label for="wellnessPhone">WhatsApp number</label>
-        <input id="wellnessPhone" name="contact_number" type="tel" inputmode="tel" autocomplete="tel" required>
+        <input id="wellnessPhone" name="contact_number" type="tel" inputmode="tel" autocomplete="tel" pattern="[+0-9() .-]{7,20}" title="Enter a valid phone number with at least seven digits" required>
       </div>
       <div class="contact-field">
         <label for="wellnessHelp">What would you like help with?</label>
@@ -1536,7 +1537,7 @@ header .logo,.footer-brand .logo{gap:0}
         <ul>
           <li><a href="#about">Our approach</a></li>
           <li><a href="#pricing">Meet Your Coach</a></li>
-          <li><a href="#pricing">Why FebFit</a></li>
+          <li><a href="#why-febfit">Why FebFit</a></li>
         </ul>
       </div>
       <div>
