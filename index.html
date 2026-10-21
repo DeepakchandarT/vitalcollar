@@ -44,6 +44,9 @@
         wellnessView.classList.toggle('is-active',wellness);
         fitnessView.setAttribute('aria-hidden',wellness?'true':'false');
         wellnessView.setAttribute('aria-hidden',wellness?'false':'true');
+        fitnessView.inert=wellness;
+        wellnessView.inert=!wellness;
+        modeSwitch.classList.remove('is-hidden');
         fitnessButton.setAttribute('aria-pressed',wellness?'false':'true');
         wellnessButton.setAttribute('aria-pressed',wellness?'true':'false');
         document.body.dataset.theme=wellness?'wellness':'fitness';
@@ -57,7 +60,8 @@
       window.addEventListener('hashchange',()=>show(location.hash==='#wellness'?'wellness':'fitness',false));
       window.addEventListener('message',event=>{
         if(event.source!==fitnessView.contentWindow&&event.source!==wellnessView.contentWindow)return;
-        if(event.data&&event.data.type==='febfit-floating')modeSwitch.classList.toggle('is-hidden',Boolean(event.data.hidden));
+        const activeFrame=document.querySelector('.view.is-active');
+        if(event.data&&event.data.type==='febfit-floating'&&event.source===activeFrame.contentWindow)modeSwitch.classList.toggle('is-hidden',Boolean(event.data.hidden));
         if(event.data&&event.data.type==='febfit-mode'){
           show(event.data.mode,true);
           const frame=event.data.mode==='wellness'?wellnessView:fitnessView;
