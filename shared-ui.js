@@ -42,19 +42,4 @@
     field.addEventListener('blur',()=>setTimeout(()=>publish(false),180));
   });
 
-  const endpoint='https://script.google.com/macros/s/AKfycbwS_XupTwhr1nZcBN5Kl3L4559Zndvlp7MVKlcXSxlgQ1qHyImDsugCb5eoeCkv6Cyl/exec';
-  document.querySelectorAll('.febfit-contact-form').forEach(form=>{
-    const status=form.querySelector('.contact-status');const button=form.querySelector('button[type="submit"]');
-    form.addEventListener('submit',async event=>{
-      event.preventDefault();if(button.disabled||!form.reportValidity())return;
-      const payload=Object.fromEntries(new FormData(form).entries());payload.submitted_at=new Date().toISOString();payload.source=form.dataset.source||'website';
-      status.textContent='';status.classList.remove('is-error');button.disabled=true;button.textContent='Sending…';
-      try{
-        await fetch(endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
-        form.reset();button.textContent='Sent ✓';status.textContent='Thanks for the details. Our team will contact you soon.';
-      }catch(error){
-        button.disabled=false;button.textContent='Send My Details →';status.classList.add('is-error');status.textContent='We could not send your details. Please check your connection and try again, or contact us on WhatsApp.';
-      }
-    });
-  });
 })();
