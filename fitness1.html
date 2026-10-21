@@ -1169,6 +1169,7 @@
 <link rel="stylesheet" href="shared-ui.css">
 <link rel="stylesheet" href="mood.css">
 <link rel="stylesheet" href="visual-refresh.css">
+<link rel="stylesheet" href="fitness-fixes.css">
 </head>
 <body class="no-js fitness-theme" data-site="fitness">
 <script>
@@ -1237,11 +1238,11 @@
 
         <div class="scrap-photo rear">
           <span class="scrap-photo-tag">move</span>
-          <img src="assets/indian-fitness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman practising a controlled strength and mobility exercise">
+          <img src="indian-fitness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman practising a controlled strength and mobility exercise">
         </div>
         <div class="scrap-photo front">
           <span class="scrap-photo-tag">restore</span>
-          <img src="assets/indian-fitness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="Women-centred movement practice in a warm wellness studio">
+          <img src="fitness-editorial.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="Women-centred movement practice in a warm wellness studio">
         </div>
         <svg class="doodle doodle-star-2" viewBox="0 0 20 20" fill="none" stroke="var(--royal-purple)"><path d="M10 1l2.2 6.5L18 9l-6 1.8L10 17l-1.8-6.2L2 9l6-1.5z"/></svg>
 
@@ -1249,7 +1250,7 @@
           <svg class="doodle-heart" viewBox="0 0 20 18" fill="none" stroke-width="1.6"><path d="M10 17S1 11 1 5.6C1 2.4 3.4 1 5.6 1 7.6 1 9 2.3 10 4.2 11 2.3 12.4 1 14.4 1 16.6 1 19 2.4 19 5.6 19 11 10 17 10 17z"/></svg>
           <p id="floatReviewText">Build strength with movement, support and a plan that respects your body.</p>
           <div class="scrap-note-who">
-            <img src="assets/indian-fitness.webp" width="1280" height="853" decoding="async" alt="">
+            <img src="indian-fitness.webp" width="1280" height="853" decoding="async" alt="">
             <span id="floatReviewName">A supportive plan, shaped around you</span>
           </div>
         </div>
@@ -1670,11 +1671,6 @@
       <div class="footer-brand">
         <a href="#" class="logo"><img src="febfit-logo.webp" alt="Febfit — Physiotherapy · Mind Wellness"></a>
         <p>Movement, nourishment and mindset — one gentle practice, built by women, for women.</p>
-        <div class="social-row">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="TikTok">TT</a>
-          <a href="#" aria-label="Pinterest">PN</a>
-        </div>
       </div>
       <div>
         <h4>Explore</h4>
@@ -1684,21 +1680,17 @@
         <h4>Support</h4>
         <ul><li><a href="#pricing">Plan Check-in</a></li><li><a href="https://wa.me/919025863098" target="_blank" rel="noopener">WhatsApp</a></li></ul>
       </div>
-      <div>
-        <h4>Stay in the loop</h4>
-        <p style="font-size:13.5px; margin-bottom:12px;">Gentle wellness notes, once a week.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value='Subscribed ✓';">
-          <input type="email" placeholder="Your email" required>
-          <button type="submit">Join</button>
-        </form>
-      </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Febfitwellness Wellness Inc. All rights reserved.</span>
       <span>Made with care, for women everywhere.</span>
     </div>
+    <div class="footer-meta">
+      <span>Mood check-ins stay in this browser.</span>
+      <a href="privacy.html#choices" target="_blank" rel="noopener">Privacy &amp; manage your data ↗</a>
+    </div>
   </div>
-<a class="privacy-link" href="privacy.html" target="_blank" rel="noopener">Privacy &amp; your data</a></footer>
+</footer>
 
 <!-- ============ FORM MODAL ============ -->
 <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
@@ -1993,15 +1985,6 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
-
-  // ---- Mobile menu (simple toggle of nav-links display) ----
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.querySelector('.nav-links');
-  menuToggle.addEventListener('click', () => {
-    const isOpen = navLinks.style.display === 'flex';
-    navLinks.style.display = isOpen ? 'none' : 'flex';
-    navLinks.style.cssText += isOpen ? '' : 'position:absolute; top:64px; left:0; right:0; background:#fff; flex-direction:column; padding:24px 22px; gap:20px; box-shadow:0 20px 30px -20px rgba(61,30,120,0.25);';
-  });
 
   // ---- Feature book: one page visible at a time, flips like a real book ----
   (function(){
@@ -2363,14 +2346,14 @@
     if (landmarkerLoading) return landmarkerLoading;
     landmarkerLoading = FilesetResolver.forVisionTasks(
       "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm"
-    ).then(vision => PoseLandmarker.createFromOptions(vision, {
-      baseOptions: {
-        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task",
-        delegate: "GPU"
-      },
-      runningMode: "IMAGE",
-      numPoses: 1
-    })).then(l => { landmarker = l; return l; })
+    ).then(async vision => {
+      const options=delegate=>({baseOptions:{
+        modelAssetPath:"https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task",
+        delegate
+      },runningMode:"IMAGE",numPoses:1});
+      try{return await PoseLandmarker.createFromOptions(vision,options('GPU'))}
+      catch(error){return PoseLandmarker.createFromOptions(vision,options('CPU'))}
+    }).then(l => { landmarker = l; return l; })
       .catch(err => { landmarkerLoading = null; console.warn('Pose model failed to load', err); return null; });
     return landmarkerLoading;
   }
@@ -2470,7 +2453,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.986.579 3.837 1.578 5.396L2 22l4.75-1.545A9.943 9.943 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.2a8.174 8.174 0 0 1-4.418-1.294l-.317-.19-3.16 1.028 1.043-3.086-.207-.318A8.173 8.173 0 0 1 3.8 12c0-4.529 3.673-8.2 8.201-8.2 4.529 0 8.2 3.671 8.2 8.2 0 4.528-3.671 8.2-8.2 8.2z"/></svg>
 </a>
 
-<p class="privacy-link">Mood check-ins stay in this browser. <a href="privacy.html#choices" target="_blank" rel="noopener">Manage your data</a>.</p>
 <script src="mood.js"></script>
 <script src="shared-ui.js"></script>
 </body>
