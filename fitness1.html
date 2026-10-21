@@ -1237,11 +1237,11 @@
         <svg class="doodle doodle-star-1" viewBox="0 0 24 24" fill="none" stroke="var(--muted-violet)"><path d="M12 1l2.6 7.8L22 11l-7.4 2.2L12 21l-2.6-7.8L2 11l7.4-2.2z"/></svg>
 
         <div class="scrap-photo rear">
-          <span class="scrap-photo-tag">move</span>
+          <span class="scrap-photo-tag">Move</span>
           <img src="indian-fitness.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="South Asian woman practising a controlled strength and mobility exercise">
         </div>
         <div class="scrap-photo front">
-          <span class="scrap-photo-tag">restore</span>
+          <span class="scrap-photo-tag">Restore</span>
           <img src="fitness-editorial.webp" width="1280" height="853" fetchpriority="high" decoding="async" alt="Women-centred movement practice in a warm wellness studio">
         </div>
         <svg class="doodle doodle-star-2" viewBox="0 0 20 20" fill="none" stroke="var(--royal-purple)"><path d="M10 1l2.2 6.5L18 9l-6 1.8L10 17l-1.8-6.2L2 9l6-1.5z"/></svg>
@@ -2137,6 +2137,7 @@
     setFloatingHidden(true);
     setTimeout(() => closeBtn.focus(), 50);
   }
+  window.openFebfitPlanCheckin = openModal;
   function closeModal(restoreFocus = true) {
     overlay.classList.remove('open');
     overlay.setAttribute('aria-hidden', 'true');
