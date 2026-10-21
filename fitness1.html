@@ -2106,7 +2106,7 @@
   const stepCount = document.getElementById('stepCount');
   const progressFill = document.getElementById('progressFill');
   const intakeStatus = document.getElementById('intakeStatus');
-  const intakeEndpoint = 'https://script.google.com/macros/s/AKfycbwS_XupTwhr1nZcBN5Kl3L4559Zndvlp7MVKlcXSxlgQ1qHyImDsugCb5eoeCkv6Cyl/exec';
+  const intakeEndpoint = '/api/leads';
   const questionKeys = ['2','17','18','19'];
   const stepKeys = ['details',...questionKeys,'photo'];
   [...document.querySelectorAll('.form-step[data-step]')]
@@ -2118,6 +2118,7 @@
   const formStepsWrap = document.getElementById('formStepsWrap');
   const totalSteps = steps.length;
   let stepIndex = 0;
+  let submissionId = null;
 
   const answers = {
     fullName: '', contactNumber: '', age: '', profession: '', city: '',
@@ -2223,9 +2224,11 @@
       nextBtn.disabled = true;
       nextBtn.textContent = 'Preparing…';
       try {
-        await fetch(intakeEndpoint, {
-          method: 'POST', mode: 'no-cors', headers: {'Content-Type':'text/plain;charset=utf-8'},
+        submissionId ||= crypto.randomUUID();
+        const response = await fetch(intakeEndpoint, {
+          method: 'POST', headers: {'Content-Type':'application/json'},
           body: JSON.stringify({
+            submission_id: submissionId,
             full_name: answers.fullName, contact_number: answers.contactNumber, age: answers.age,
             profession: answers.profession, city: answers.city, primary_goal: answers.primaryGoal,
             training_location: answers.trainingLocation, session_length: answers.sessionLength,
@@ -2235,7 +2238,9 @@
             submitted_at: new Date().toISOString(), source: 'fitness_plan_checkin'
           })
         });
-        document.getElementById('deliveryStatus').textContent='Enquiry request sent; receipt cannot be confirmed here. Contact us on WhatsApp if you need confirmation.';
+        const result = await response.json();
+        if (!response.ok || !result.saved || result.submission_id !== submissionId) throw new Error('Lead save not confirmed');
+        document.getElementById('deliveryStatus').textContent='Your enquiry has been saved. The FebFit team can follow up using the contact number you provided.';
         const firstName = answers.fullName.split(/\s+/)[0];
         document.getElementById('successHeading').textContent = firstName ? `${firstName}, your starting insights are ready` : 'Your starting insights are ready';
         formStepsWrap.style.display = 'none';
