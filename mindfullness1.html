@@ -1487,34 +1487,21 @@ header .logo,.footer-brand .logo{gap:0}
 </section>
 
 <section class="contact-section" id="contact">
-  <div class="wrap contact-shell">
-    <div class="contact-copy reveal">
-      <span class="eyebrow">Start your journey</span>
-      <h2>Tell us how we can help.</h2>
-      <p>Share three quick details. The FebFit team will contact you to discuss the right wellness or physiotherapy support for you.</p>
+  <div class="wrap insight-shell">
+    <div class="insight-copy reveal">
+      <span class="eyebrow">Your personal starting point</span>
+      <h2>Start with a clearer picture of you.</h2>
+      <p>Answer a few questions about your goals and routine. You can add an optional photo for a private, on-device landmark snapshot, then see a simple summary to discuss with your coach.</p>
+      <a class="btn btn-primary insight-cta" href="index.html#fitness-checkin" id="openWellnessCheckin">Begin your guided check-in <span aria-hidden="true">↗</span></a>
+      <p class="insight-small">Opens the FebFit Fitness check-in. The photo step is optional.</p>
     </div>
-    <form class="contact-form febfit-contact-form reveal reveal-delay-1" id="wellnessContactForm" data-source="wellness">
-      <div class="contact-field">
-        <label for="wellnessName">Your name</label>
-        <input id="wellnessName" name="full_name" autocomplete="name" required>
-      </div>
-      <div class="contact-field">
-        <label for="wellnessPhone">WhatsApp number</label>
-        <input id="wellnessPhone" name="contact_number" type="tel" inputmode="tel" autocomplete="tel" pattern="[+0-9() .-]{7,20}" title="Enter a valid phone number with at least seven digits" required>
-      </div>
-      <div class="contact-field">
-        <label for="wellnessHelp">What would you like help with?</label>
-        <select id="wellnessHelp" name="support_needed" required>
-          <option value="">Choose one</option>
-          <option>Mindfulness and stress support</option>
-          <option>Physiotherapy assessment</option>
-          <option>Sports rehabilitation</option>
-          <option>Nutrition and holistic wellness</option>
-        </select>
-      </div>
-      <button class="btn btn-primary" type="submit">Send My Details →</button>
-      <p class="contact-status" role="status" aria-live="polite"></p>
-    </form>
+    <div class="insight-preview reveal reveal-delay-1" aria-label="What your check-in includes">
+      <div class="insight-preview-top"><span class="insight-symbol" aria-hidden="true">✳</span><span>FEBFIT / YOUR STARTING INSIGHTS</span></div>
+      <div class="insight-preview-line"><strong>01</strong><div><h3>Your goals</h3><p>Share what you want to work toward.</p></div></div>
+      <div class="insight-preview-line"><strong>02</strong><div><h3>Optional photo snapshot</h3><p>Landmark observations stay on your device unless you choose to share the calculated results.</p></div></div>
+      <div class="insight-preview-line"><strong>03</strong><div><h3>A useful conversation</h3><p>Take your summary to the FebFit team.</p></div></div>
+      <p class="insight-preview-foot">A photo cannot diagnose an injury or measure body composition.</p>
+    </div>
   </div>
 </section>
 
@@ -1648,6 +1635,14 @@ header .logo,.footer-brand .logo{gap:0}
 <a href="https://wa.me/919025863098" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
 </a>
+<script>
+  document.getElementById('openWellnessCheckin').addEventListener('click',function(event){
+    if(window.parent!==window){
+      event.preventDefault();
+      window.parent.postMessage({type:'febfit-open-checkin'},location.origin);
+    }
+  });
+</script>
 <script src="mood.js"></script>
 <script src="shared-ui.js"></script>
 </body>
