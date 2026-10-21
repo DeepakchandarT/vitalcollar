@@ -1462,8 +1462,10 @@ header .logo,.footer-brand .logo{gap:0}
   <div class="wrap">
     <span class="sticker">✨ Why FebFit?</span>
     <h2 style="margin-top:22px;">Science meets wellness.</h2>
-    <p>At FebFit, we bring together Physiotherapy × Fitness × Strength &amp; Conditioning × Nutrition × Mindfulness — because true wellness isn't just one thing. It's a lifestyle.</p>
-    <p style="font-family:var(--ff-display); font-style:italic; font-size:20px; color:var(--deep-moss); margin-bottom:30px;">Move. Strengthen. Nourish. Breathe. Thrive.</p>
+    <p>Care for the whole person, with movement and support shaped around your life.</p>
+    <div class="care-points" aria-label="Our approach">
+      <span>Physiotherapy</span><span>Movement</span><span>Nutrition</span><span>Mindfulness</span>
+    </div>
     <a href="#contact" class="btn btn-primary">Talk to the FebFit team</a>
   </div>
 </section>
@@ -1623,18 +1625,21 @@ header .logo,.footer-brand .logo{gap:0}
     ['Sustainable Eating','An approach you can keep long after the “diet” would have ended.'],
     ['Goal-Oriented Nutrition Guidance','Personalised direction tied to your recovery, performance or body goals.']
   ];
-  let pair=0;
+  let page=0;
+  const narrow=window.matchMedia('(max-width:700px)');
   function render(){
-    const a=pages[pair*2],b=pages[pair*2+1];
-    left.innerHTML='<span class="page-tag">Nutrition / '+String(pair*2+1).padStart(2,'0')+'</span><h3>'+a[0]+'</h3><p>'+a[1]+'</p><span class="page-number">'+(pair*2+1)+'</span>';
-    right.innerHTML='<span class="page-tag">Nutrition / '+String(pair*2+2).padStart(2,'0')+'</span><h3>'+b[0]+'</h3><p>'+b[1]+'</p><span class="page-number">'+(pair*2+2)+'</span>';
+    const start=narrow.matches?page:Math.floor(page/2)*2;
+    const a=pages[start],b=pages[start+1];
+    left.innerHTML='<span class="page-tag">Nutrition / '+String(start+1).padStart(2,'0')+'</span><h3>'+a[0]+'</h3><p>'+a[1]+'</p><span class="page-number">'+(start+1)+'</span>';
+    right.innerHTML='<span class="page-tag">Nutrition / '+String(start+2).padStart(2,'0')+'</span><h3>'+b[0]+'</h3><p>'+b[1]+'</p><span class="page-number">'+(start+2)+'</span>';
     left.classList.remove('flip-in');right.classList.remove('flip-in');void left.offsetWidth;
     left.classList.add('flip-in');right.classList.add('flip-in');
-    count.textContent=(pair*2+1)+'–'+(pair*2+2)+' of '+pages.length;
-    prev.disabled=pair===0;next.disabled=pair===pages.length/2-1;
+    count.textContent=narrow.matches?(start+1)+' of '+pages.length:(start+1)+'–'+(start+2)+' of '+pages.length;
+    prev.disabled=start===0;next.disabled=start>=(narrow.matches?pages.length-1:pages.length-2);
   }
-  prev.onclick=function(){if(pair>0){pair--;render()}};
-  next.onclick=function(){if(pair<pages.length/2-1){pair++;render()}};
+  prev.onclick=function(){page=Math.max(0,page-(narrow.matches?1:2));render()};
+  next.onclick=function(){page=Math.min(pages.length-1,page+(narrow.matches?1:2));render()};
+  narrow.addEventListener('change',render);
   render();
 })();
 </script>
