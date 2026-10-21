@@ -55,6 +55,45 @@ body.wellness-theme{
 .wellness-theme .nutrition-page h3{font-family:var(--ff-display);font-style:normal;font-weight:400;}
 .wellness-theme .book-btn:focus-visible,.wellness-theme .fwm-m:focus-visible{outline:3px solid #b48346;outline-offset:3px;}
 .wellness-theme .contact-field input:focus-visible,.wellness-theme .contact-field select:focus-visible{outline:2px solid #287460;outline-offset:2px;}
+/* Continue the same sage, cream and deep green palette below the hero. */
+body.wellness-theme{padding-bottom:0!important;}
+.wellness-theme .about{background:#fcfdf9;}
+.wellness-theme .pillars{background:#f1f6ed;}
+.wellness-theme .how{background:#174d42;color:#f8fbf5;}
+.wellness-theme .how .section-head p,.wellness-theme .how .step p{color:#d5e8de;}
+.wellness-theme .how .step-num{color:#b9dfbc;}
+.wellness-theme .testimonials{background:#fbfcf7;}
+.wellness-theme #pricing{background:#e9f2e8!important;}
+.wellness-theme .cta-band{background:linear-gradient(135deg,#f5f8ed,#dcece1);}
+.wellness-theme .fwm{
+  padding-bottom:clamp(66px,8vw,100px);
+  background:linear-gradient(160deg,#e8f2e8,#f8faf2);
+}
+.wellness-theme .fwm[data-theme="wellness"]{--accent:#217867;--deep:#123f38;--soft:#e5f1e7;--ink:#224c41;}
+.wellness-theme .fwm-m,.wellness-theme .fwm-card{border-radius:18px;}
+.wellness-theme .contact-section{
+  background:#f2f7ef;
+  padding-bottom:clamp(72px,9vw,112px)!important;
+}
+.wellness-theme .contact-form{border-color:#cddfd1;background:#fffefa;}
+.wellness-theme footer{
+  padding:clamp(56px,7vw,82px) 0 26px;
+  background:linear-gradient(155deg,#194f43 0%,#123d35 72%);
+  color:#dcebe1;
+}
+.wellness-theme footer h4{font-family:var(--ff-body);font-size:12px;letter-spacing:.13em;color:#b6dfc3;}
+.wellness-theme footer ul a,.wellness-theme .footer-brand p{color:#d0e2d7;}
+.wellness-theme footer ul a:hover,.wellness-theme footer a:focus-visible{color:#fff;}
+.wellness-theme .footer-grid{gap:clamp(28px,4vw,48px);margin-bottom:46px;}
+.wellness-theme .footer-bottom{border-top-color:rgba(216,241,220,.24);color:#b8d3c5;}
+.wellness-theme .footer-meta{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:22px;font-size:12px;line-height:1.5;color:#c4d9ca;
+}
+.wellness-theme .footer-meta a{color:#e3f2df;text-decoration:underline;text-underline-offset:4px;}
+.wellness-theme .footer-meta a:hover{color:#fff;}
+.wellness-theme footer .btn-primary{background:#e3f2df!important;color:#164d3e!important;box-shadow:none!important;}
+.wellness-theme footer .btn-primary:hover{background:#fff!important;}
 @media(max-width:700px){
   .wellness-theme .hero{padding-top:112px!important;padding-bottom:68px!important;}
   .wellness-theme .hero::before{top:91px;left:20px;font-size:27px;}
@@ -64,6 +103,12 @@ body.wellness-theme{
   .wellness-theme .scrap-photo img{height:185px!important;}
   .wellness-theme .scrap-photo.rear{left:1%!important;}
   .wellness-theme .scrap-photo.front{right:1%!important;top:51px!important;}
+  .wellness-theme .footer-grid{gap:30px;margin-bottom:38px;}
+  .wellness-theme .footer-grid>div{min-width:0;}
+  .wellness-theme footer ul li{margin-bottom:8px;}
+  .wellness-theme footer h4{margin-bottom:12px;}
+  .wellness-theme .footer-bottom{gap:6px;}
+  .wellness-theme .footer-meta{gap:6px;margin-top:18px;}
 }
 @media(max-width:380px){
   .wellness-theme .scrap-collage{min-height:250px!important;}
