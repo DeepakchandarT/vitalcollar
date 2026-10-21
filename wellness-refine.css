@@ -60,13 +60,28 @@ body.wellness-theme{
 .wellness-theme .nutrition-page .page-tag{color:#277561;}
 .wellness-theme #pricing .section-head{max-width:690px;margin-bottom:42px!important;}
 .wellness-theme #pricing .section-head p{max-width:50ch;margin-inline:auto;line-height:1.55;}
-.wellness-theme #pricing .coach-bio{max-width:650px;}
-.wellness-theme #pricing .coach-bio>p{font-size:16px;line-height:1.68;margin-bottom:14px;}
-.wellness-theme #pricing .qualifications{margin-top:27px;}
-.wellness-theme #pricing .qualifications-title{font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:13px;}
-.wellness-theme #pricing .qualification-card{align-items:center;color:#365f51;}
-.wellness-theme #pricing blockquote{margin-top:30px;padding-left:20px;border-left:3px solid #368d73;font-size:clamp(20px,2vw,27px);line-height:1.4;}
-.wellness-theme #pricing blockquote cite{font-size:12px;line-height:1.5;margin-top:14px;}
+.wellness-theme #pricing .coach-bio{max-width:620px;}
+.wellness-theme #pricing .coach-lead{font:400 clamp(27px,3vw,38px)/1.18 var(--ff-display);letter-spacing:-.035em;color:#143f37;margin:0 0 18px;}
+.wellness-theme #pricing .coach-detail{font:400 16px/1.7 var(--ff-body);color:#456359;margin:0;max-width:54ch;}
+.wellness-theme #pricing .qualifications{margin-top:32px;}
+.wellness-theme #pricing .qualifications-title{font:700 13px/1.4 var(--ff-body);letter-spacing:.07em;text-transform:none;color:#256856;margin:0 0 12px;}
+.wellness-theme #pricing .qualification-list{gap:0;perspective:none;border-top:1px solid #bbd5c5;}
+.wellness-theme #pricing .qualification-card,.wellness-theme #pricing .reveal.in-view .qualification-card{
+  display:grid;grid-template-columns:34px minmax(0,1fr);align-items:start;gap:15px;
+  padding:15px 2px;background:transparent;border:0;border-bottom:1px solid #bbd5c5;border-radius:0;box-shadow:none;
+  color:#173f37;font:600 15px/1.35 var(--ff-body);opacity:1!important;transform:none!important;animation:none!important;
+}
+.wellness-theme #pricing .qualification-card:hover{background:transparent;box-shadow:none;border-color:#bbd5c5;}
+.wellness-theme #pricing .qualification-card span{min-width:0;}
+.wellness-theme #pricing .qualification-index{display:block!important;flex:none!important;color:#37816b;font:700 11px/1.8 var(--ff-body);letter-spacing:.06em;}
+.wellness-theme #pricing .qualification-card small{display:block;margin-top:4px;color:#61796e;font:400 13px/1.35 var(--ff-body);}
+.wellness-theme #pricing blockquote{
+  margin:32px 0 0;padding:22px 26px;border:0;border-radius:16px;
+  background:#194d42;color:#f8fbf4;box-shadow:0 18px 35px -27px rgba(18,63,56,.5);
+  font:400 17px/1.55 var(--ff-body);font-style:normal;
+}
+.wellness-theme #pricing blockquote p{margin:0;color:inherit;}
+.wellness-theme #pricing blockquote cite{display:block;margin-top:13px;color:#bfe1cb;font:600 12px/1.4 var(--ff-body);}
 .wellness-theme .book-btn:focus-visible,.wellness-theme .fwm-m:focus-visible{outline:3px solid #b48346;outline-offset:3px;}
 .wellness-theme .contact-field input:focus-visible,.wellness-theme .contact-field select:focus-visible{outline:2px solid #287460;outline-offset:2px;}
 /* Continue the same sage, cream and deep green palette below the hero. */
@@ -139,10 +154,12 @@ body.wellness-theme{padding-bottom:0!important;}
   .wellness-theme .nutrition-page .page-tag{margin-bottom:21px;}
   .wellness-theme #pricing .section-head{margin-bottom:34px!important;}
   .wellness-theme #pricing .section-head p{font-size:14px;line-height:1.55;}
-  .wellness-theme #pricing .coach-bio>p{font-size:15px;line-height:1.6;margin-bottom:12px;}
-  .wellness-theme #pricing .qualifications{margin-top:24px;}
-  .wellness-theme #pricing .qualification-card{padding:13px 14px;font-size:14px;line-height:1.48;}
-  .wellness-theme #pricing blockquote{font-size:clamp(20px,5.5vw,24px);line-height:1.38;margin-top:26px;}
+  .wellness-theme #pricing .coach-lead{font-size:clamp(27px,7.4vw,34px);margin-bottom:14px;}
+  .wellness-theme #pricing .coach-detail{font-size:15px;line-height:1.65;}
+  .wellness-theme #pricing .qualifications{margin-top:27px;}
+  .wellness-theme #pricing .qualification-card{padding:13px 2px;font-size:14px;}
+  .wellness-theme #pricing .qualification-card small{font-size:12px;}
+  .wellness-theme #pricing blockquote{font-size:15px;line-height:1.55;margin-top:27px;padding:20px 22px;}
   .wellness-theme #pricing blockquote cite{font-size:11px;}
   .wellness-theme .insight-shell{grid-template-columns:1fr;gap:32px;}
   .wellness-theme .insight-copy h2{font-size:clamp(35px,9vw,47px);}
