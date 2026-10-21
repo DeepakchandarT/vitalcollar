@@ -38,6 +38,18 @@
       const fitnessButton=document.getElementById('fitnessButton');
       const wellnessButton=document.getElementById('wellnessButton');
       const modeSwitch=document.querySelector('.mode-switch');
+      function openCheckin(){
+        show('fitness',true);
+        const launch=()=>{
+          const frame=fitnessView.contentWindow;
+          try{
+            frame.document.getElementById('pricing')?.scrollIntoView({behavior:'smooth'});
+            if(typeof frame.openFebfitPlanCheckin==='function')frame.openFebfitPlanCheckin();
+          }catch(error){}
+        };
+        if(fitnessView.contentDocument?.readyState==='complete')launch();
+        else fitnessView.addEventListener('load',launch,{once:true});
+      }
       function show(mode,updateHash){
         const wellness=mode==='wellness';
         fitnessView.classList.toggle('is-active',!wellness);
@@ -62,6 +74,7 @@
         if(event.source!==fitnessView.contentWindow&&event.source!==wellnessView.contentWindow)return;
         const activeFrame=document.querySelector('.view.is-active');
         if(event.data&&event.data.type==='febfit-floating'&&event.source===activeFrame.contentWindow)modeSwitch.classList.toggle('is-hidden',Boolean(event.data.hidden));
+        if(event.data&&event.data.type==='febfit-open-checkin'&&event.source===wellnessView.contentWindow)openCheckin();
         if(event.data&&event.data.type==='febfit-mode'){
           show(event.data.mode,true);
           const frame=event.data.mode==='wellness'?wellnessView:fitnessView;
@@ -69,6 +82,7 @@
         }
       });
       show(location.hash==='#wellness'?'wellness':'fitness',false);
+      if(location.hash==='#fitness-checkin')openCheckin();
     })();
   </script>
 </body>
